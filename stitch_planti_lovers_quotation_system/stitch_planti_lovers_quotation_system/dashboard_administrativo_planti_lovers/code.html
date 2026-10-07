@@ -1,0 +1,812 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,600;0,700;1,600;1,700&amp;family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "outline": "#717973", "secondary-fixed-dim": "#75daa8", "inverse-surface": "#2e312d", "primary": "#012d1d", "secondary": "#006c48", "primary-fixed-dim": "#a5d0b9", "inverse-on-surface": "#eff1eb", "surface-variant": "#e1e3dd", "on-tertiary-fixed-variant": "#822801", "surface-container-lowest": "#ffffff", "tertiary-container": "#702000", "surface": "#f8faf4", "primary-fixed": "#c1ecd4", "on-tertiary-fixed": "#390c00", "secondary-container": "#92f7c3", "on-surface": "#191c19", "surface-tint": "#3f6653", "on-secondary": "#ffffff", "surface-container-highest": "#e1e3dd", "on-secondary-fixed-variant": "#005235", "on-surface-variant": "#414844", "background": "#f8faf4", "error": "#ba1a1a", "surface-dim": "#d8dbd5", "on-primary-fixed-variant": "#274e3d", "tertiary-fixed-dim": "#ffb59c", "on-background": "#191c19", "tertiary-fixed": "#ffdbcf", "secondary-fixed": "#92f7c3", "on-tertiary-container": "#ff8358", "inverse-primary": "#a5d0b9", "on-error-container": "#93000a", "primary-container": "#1b4332", "on-error": "#ffffff", "tertiary": "#4b1300", "surface-container-low": "#f2f4ee", "surface-bright": "#f8faf4", "on-primary-fixed": "#002114", "on-primary": "#ffffff", "surface-container": "#edefe9", "outline-variant": "#c1c8c2", "on-tertiary": "#ffffff", "on-primary-container": "#86af99", "on-secondary-container": "#00734d", "error-container": "#ffdad6", "surface-container-high": "#e7e9e3", "on-secondary-fixed": "#002113" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin-desktop": "2.5rem", "margin-mobile": "1rem", "gutter": "1rem", "gutter-desktop": "1.5rem", "gutter-mobile": "0.75rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "margin": "1rem", "space-md": "1rem", "space-xl": "2rem", "space-lg": "1.5rem" }, fontFamily: { "label-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Epilogue"], "headline-lg-mobile": ["Epilogue"], "headline-sm": ["Epilogue"], "label-lg": ["Plus Jakarta Sans"], "headline-xl": ["Epilogue"], "body-sm": ["Plus Jakarta Sans"], "headline-lg": ["Epilogue"], "headline-md": ["Epilogue"] }, fontSize: { "label-sm": ["11px", { lineHeight: "14px", fontWeight: "700" }], "label-md": ["13px", { lineHeight: "16px", fontWeight: "600" }], "body-lg": ["17px", { lineHeight: "26px", fontWeight: "400" }], "body-md": ["15px", { lineHeight: "22px", fontWeight: "400" }], "headline-xl-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }], "headline-lg-mobile": ["22px", { lineHeight: "30px", fontWeight: "600" }], "headline-sm": ["17px", { lineHeight: "24px", fontWeight: "600" }], "label-lg": ["15px", { lineHeight: "20px", fontWeight: "600" }], "headline-xl": ["36px", { lineHeight: "44px", fontWeight: "700" }], "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }], "headline-lg": ["28px", { lineHeight: "36px", fontWeight: "600" }], "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-secondary-fixed text-[22px]">potted_plant</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">Planti Lovers</span><span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Admin Portal</span></div></div><div class="px-space-md py-space-sm"><div class="bg-surface-container rounded-lg p-space-sm flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Sincronizado en vivo</span></div><span class="font-label-sm text-label-sm text-primary font-bold">CDMX</span></div></div><nav class="flex flex-col gap-1 px-space-sm mt-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a aria-current="page" class="flex items-center justify-between px-space-md py-2.5 transition-colors bg-primary-container text-on-primary-container font-semibold rounded-lg" data-path="dashboard" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-body-md text-body-md">Dashboard</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="ordenes-vigentes" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">local_shipping</span><span class="font-body-md text-body-md">Órdenes Vigentes</span></div><span class="bg-secondary text-on-secondary font-label-sm text-label-sm px-2 py-0.5 rounded-full">8</span></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="historico-de-ordenes" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">history</span><span class="font-body-md text-body-md">Histórico de Órdenes</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="tarifarios-y-paqueteria" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-body-md text-body-md">Tarifarios &amp; Paquetería</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="catalogo-de-especies" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">psychiatry</span><span class="font-body-md text-body-md">Catálogo de Especies</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="comprobantes-por-validar" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">verified</span><span class="font-body-md text-body-md">Comprobantes por Validar</span></div><span class="bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm px-2 py-0.5 rounded-full">3</span></a></nav></div><div class="p-space-md"><div class="bg-surface-container-lowest rounded-xl p-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col min-w-0"><span class="font-label-md text-label-md text-on-surface truncate">Mariana R.</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Operaciones</span></div></div><button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">logout</span></button></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-3 py-1.5 rounded-full bg-surface-container"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary uppercase">En Operación</span></div><div class="flex items-center gap-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">storefront</span><span class="font-body-md text-body-md text-on-surface font-semibold">Vivero Roma Norte</span></div></div><div class="flex items-center gap-space-md"><div class="relative flex items-center"><button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors relative"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-tertiary-container ring-2 ring-surface"></span></button></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface font-semibold">Mariana R.</span><span class="font-label-sm text-label-sm text-secondary">Roma Norte - Ops</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="px-space-desktop py-space-xl max-w-[1540px] mx-auto w-full space-y-space-xl">
+<!-- Top Action Bar & Editorial Greeting -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm uppercase tracking-wider">
+            Nodo Central Activo
+          </span>
+<span class="text-on-surface-variant font-label-md text-label-md">Turno Matutino • Vivero 01</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary tracking-tight">
+          Panel Operativo — Roma Norte
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Martes 06 de Octubre, 2026 • <span class="text-secondary font-semibold">14 despachos programados</span> con recolección vespertina
+        </p>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="inline-flex items-center gap-2 h-12 px-space-md rounded-lg bg-surface-container-high text-on-surface font-label-lg text-label-lg hover:bg-surface-variant transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span class="">Descargar Reporte Diario</span>
+</button>
+<button class="inline-flex items-center gap-2 h-12 px-space-lg rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg hover:bg-primary transition-colors shadow-sm active:scale-95">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span class="">+ Nueva Cotización Manual</span>
+</button>
+</div>
+</div>
+<!-- KPI Operations Bento Row (6 Cards) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-space-md">
+<!-- Card 1: Por Cotizar -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="flex items-start justify-between mb-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">request_quote</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-fixed-variant animate-pulse"></span>
+            +3 en 1h
+          </span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary tracking-tight font-bold">12</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Por Cotizar</p>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Demanda botánica alta</p>
+</div>
+<!-- Card 2: Cotizaciones Enviadas -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between mb-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">send</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm bg-secondary-fixed/50 px-2 py-0.5 rounded-full">
+            $28,450 MXN
+          </span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary tracking-tight font-bold">18</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Esperando Pago</p>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Vigencia 48h hábiles</p>
+</div>
+<!-- Card 3: Comprobantes por Validar (Prioritario) -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute top-0 right-0 w-2 h-full bg-error"></div>
+<div class="flex items-start justify-between mb-space-sm">
+<div class="w-10 h-10 rounded-lg bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">
+            Urgente
+          </span>
+</div>
+<div class="font-headline-lg text-headline-lg text-error tracking-tight font-bold">5</div>
+<p class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider mt-1 font-bold">Validar SPEI</p>
+<p class="font-body-sm text-body-sm text-error mt-0.5">Retención de stock</p>
+</div>
+<!-- Card 4: En Preparación -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between mb-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</div>
+<span class="text-tertiary-container font-label-sm text-label-sm bg-tertiary-fixed/30 px-2 py-0.5 rounded-full">
+            4 sin foto
+          </span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary tracking-tight font-bold">7</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">En Empaque</p>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Mesa 2 y Sustratos</p>
+</div>
+<!-- Card 5: En Tránsito -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between mb-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm bg-secondary-fixed/50 px-2 py-0.5 rounded-full">
+            Activas
+          </span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary tracking-tight font-bold">14</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">En Tránsito</p>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">DHL &amp; Paquetexpress</p>
+</div>
+<!-- Card 6: Entregadas Hoy -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between mb-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm bg-secondary-fixed/50 px-2 py-0.5 rounded-full">
+            $14,200 MXN
+          </span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary tracking-tight font-bold">9</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Entregadas Hoy</p>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">100% efectividad</p>
+</div>
+</div>
+<!-- Main Dual Layout: Wide Table & Specialized Ops Aside -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Left (Wide): Priority Orders Table -->
+<div class="xl:col-span-8 space-y-space-md">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg">
+<!-- Table Header & Filter Row -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md pb-space-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Órdenes Vigentes Prioritarias</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Gestión de flujo vivo de pedidos de plantas vivas</p>
+</div>
+<!-- Quick Filters (Pills) -->
+<div class="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0" id="filter-container">
+<button class="px-3 py-1.5 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm transition-all" onclick="filterTable('todas', this)">
+                Todas (48)
+              </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" onclick="filterTable('cotizar', this)">
+                Por Cotizar
+              </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" onclick="filterTable('spei', this)">
+                SPEI Pendiente
+              </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" onclick="filterTable('empaque', this)">
+                En Empaque
+              </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" onclick="filterTable('transito', this)">
+                Por Enviar
+              </button>
+</div>
+</div><div class="mb-space-md flex flex-col sm:flex-row items-center gap-space-sm"><div class="relative flex-1 w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px] pointer-events-none">search</span><input type="text" id="orders-search-input" placeholder="Buscar por folio (PED/ORD), cliente o WhatsApp..." class="w-full h-10 pl-10 pr-10 rounded-lg bg-surface-container-low text-on-surface text-body-sm placeholder:text-outline border border-transparent focus:border-secondary focus:bg-surface-container-lowest focus:outline-none transition-all shadow-sm" oninput="(function(val){ const q = val.toLowerCase().trim(); document.querySelectorAll('#orders-table tbody tr').forEach(row =&gt; { const text = row.innerText.toLowerCase(); row.style.display = (!q || text.includes(q)) ? '' : 'none'; }); })(this.value)"><button class="absolute right-2.5 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface p-1 rounded transition-colors" onclick="document.getElementById('orders-search-input').value = ''; document.querySelectorAll('#orders-table tbody tr').forEach(r =&gt; r.style.display = '');" title="Limpiar búsqueda"><span class="material-symbols-outlined text-[18px]">close</span></button></div><div class="flex items-center gap-1.5 shrink-0 text-on-surface-variant font-label-sm text-label-sm px-2.5 py-2 bg-surface-container-low rounded-lg"><span class="material-symbols-outlined text-[16px] text-secondary">filter_alt</span><span class="">Filtro en vivo</span></div></div>
+<!-- Table Container -->
+<div class="overflow-x-auto -mx-space-lg px-space-lg">
+<table class="w-full text-left" id="orders-table">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider rounded-lg">
+<th class="py-3 px-space-md rounded-l-lg">Folio / Tipo</th>
+<th class="py-3 px-space-md">Cliente</th>
+<th class="py-3 px-space-md">Especímenes</th>
+<th class="py-3 px-space-md">Destino</th>
+<th class="py-3 px-space-md">Estado</th>
+<th class="py-3 px-space-md">Guía</th>
+<th class="py-3 px-space-md rounded-r-lg text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-sm font-body-sm">
+<!-- Row 1: Validar Comprobante SPEI -->
+<tr class="hover:bg-surface-container-low/60 transition-colors" data-status="spei">
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">PED-20261006-A7K4</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                        Cotización Web
+                      </span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Dra. Camila Morales</span>
+<a class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm hover:underline mt-0.5" href="https://wa.me/525541829033" target="_blank">
+<span class="material-symbols-outlined text-[14px]">chat</span>
+                        55 4182 9033
+                      </a>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-semibold">1x Monstera Deliciosa (XL)</span>
+<span class="text-on-surface-variant text-[12px]">Maceta barro Terracota 35cm • $1,580.00</span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">C.P. 06700, CDMX</span>
+<span class="text-on-surface-variant text-[12px]">Col. Roma Norte (Local)</span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+                      Validar SPEI
+                    </span>
+</td>
+<td class="py-4 px-space-md text-on-surface-variant">
+<span class="font-label-sm text-label-sm text-outline">Flete Vivero #04</span>
+</td>
+<td class="py-4 px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="px-2.5 py-1 rounded-lg bg-tertiary text-on-tertiary font-label-sm text-label-sm hover:opacity-90 transition-opacity" title="Revisar Transferencia">
+                        Validar
+                      </button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: En Empaque Fotográfico -->
+<tr class="hover:bg-surface-container-low/60 transition-colors" data-status="empaque">
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">ORD-20261006-F29B</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                        Orden Pagada
+                      </span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Estudio Arq. Taller 9</span>
+<a class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm hover:underline mt-0.5" href="https://wa.me/525598124431" target="_blank">
+<span class="material-symbols-outlined text-[14px]">chat</span>
+                        55 9812 4431
+                      </a>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-semibold">2x Ficus Lyrata Gigante (1.8m)</span>
+<span class="text-on-surface-variant text-[12px]">Tutor fibra coco • $6,400.00</span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">C.P. 64000, MTY</span>
+<span class="text-on-surface-variant text-[12px]">San Pedro Garza G.</span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>
+                      Embalaje (Sin Foto)
+                    </span>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-primary">Paquetexpress</span>
+<span class="text-[11px] text-on-surface-variant font-mono">PQX-8941029</span>
+</div>
+</td>
+<td class="py-4 px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container text-primary font-label-sm text-label-sm hover:bg-surface-variant transition-colors" title="Subir evidencia botánica">
+                        Subir Foto
+                      </button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Por Cotizar (Nuevo Lead) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors" data-status="cotizar">
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">SOL-20261006-K109</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-on-tertiary-fixed-variant mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-fixed-variant"></span>
+                        Cotización WhatsApp
+                      </span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Gerardo Peña V.</span>
+<a class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm hover:underline mt-0.5" href="https://wa.me/525512347788" target="_blank">
+<span class="material-symbols-outlined text-[14px]">chat</span>
+                        55 1234 7788
+                      </a>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-semibold">4x Sansevieria Trifasciata</span>
+<span class="text-on-surface-variant text-[12px]">3x Calathea Orbifolia • Estimado ~$3,900</span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">C.P. 76000, QRO</span>
+<span class="text-on-surface-variant text-[12px]">Querétaro Centro</span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-fixed-variant"></span>
+                      Pendiente Cotizar
+                    </span>
+</td>
+<td class="py-4 px-space-md text-on-surface-variant">
+<span class="font-label-sm text-label-sm text-outline">Por Asignar</span>
+</td>
+<td class="py-4 px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="px-2.5 py-1 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm hover:bg-primary transition-colors">
+                        Cotizar
+                      </button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: En Tránsito con Paquetería -->
+<tr class="hover:bg-surface-container-low/60 transition-colors" data-status="transito">
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">ORD-20261005-B440</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                        Orden Pagada
+                      </span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Restaurante Botánico</span>
+<a class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm hover:underline mt-0.5" href="https://wa.me/525533990011" target="_blank">
+<span class="material-symbols-outlined text-[14px]">chat</span>
+                        55 3399 0011
+                      </a>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-semibold">1x Philodendron Gloriosum</span>
+<span class="text-on-surface-variant text-[12px]">Hojas aterciopeladas • $2,850.00</span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">C.P. 44100, GDL</span>
+<span class="text-on-surface-variant text-[12px]">Col. Americana</span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed/50 text-secondary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                      En Tránsito DHL
+                    </span>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-primary">DHL Express</span>
+<span class="text-[11px] text-on-surface-variant font-mono">DHL-54910283</span>
+</div>
+</td>
+<td class="py-4 px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-variant transition-colors">
+                        Rastrear
+                      </button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Retiro en Sucursal -->
+<tr class="hover:bg-surface-container-low/60 transition-colors" data-status="transito">
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">ORD-20261006-R019</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                        Orden Pagada
+                      </span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Valeria Zúñiga</span>
+<a class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm hover:underline mt-0.5" href="https://wa.me/525588776655" target="_blank">
+<span class="material-symbols-outlined text-[14px]">chat</span>
+                        55 8877 6655
+                      </a>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-semibold">1x Alocasia Polly + Abono Eco</span>
+<span class="text-on-surface-variant text-[12px]">Kit Sustrato Aroid • $980.00</span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Pick-Up Vivero</span>
+<span class="text-on-surface-variant text-[12px]">Mostrador Roma Norte</span>
+</div>
+</td>
+<td class="py-4 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed/50 text-secondary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                      Listo para Recoger
+                    </span>
+</td>
+<td class="py-4 px-space-md text-on-surface-variant">
+<span class="font-label-sm text-label-sm text-outline">Entrega en Tienda</span>
+</td>
+<td class="py-4 px-space-md text-right">
+<div class="inline-flex items-center gap-1">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-variant transition-colors">
+                        Notificar
+                      </button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Bottom Bar -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm pt-space-md border-t border-surface-container text-body-sm text-on-surface-variant">
+<span class="">Mostrando 5 de 48 órdenes activas</span>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm disabled:opacity-40" disabled="">Anterior</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-variant font-label-sm text-label-sm">Siguiente</button>
+</div>
+</div>
+</div>
+<!-- Specimen Packing Visual Progress / Protocol Box -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">nature_people</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Protocolo de Control de Raíz y Follaje</h3>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded-full">Norma NOM-Fito-02</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">1. Hidratación Preventiva</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">water_drop</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Regado controlado a cepellón 12h previo al empaque en caja rígida.</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">2. Envoltura de Musgo Sphagnum</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">yard</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Protección del sistema radicular para trayectos foráneos superiores a 48h.</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">3. Caja Microperforada</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">air</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Flejes y cámara de aire vertical con soporte de tutor cónico.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right (Narrow): SPEI Validation, Sensitive Botanical Packaging, Logistics Breakdown -->
+<div class="xl:col-span-4 space-y-space-md">
+<!-- Widget 1: SPEI Validation Module -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Validar SPEI Recientes</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">5 transferencias pendientes</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-bold">Urgente</span>
+</div>
+<!-- Pending Item 1 -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-sm" id="spei-item-1">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-14 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden shrink-0 shadow-sm relative group cursor-pointer" onclick="openReceiptModal()">
+<img class="w-full h-full object-cover" data-alt="A smartphone screenshot of a Mexican mobile banking SPEI transfer receipt from BBVA showing folio reference numbers, date stamp, and green confirmation checkmark on a crisp surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdf8BEJusbqePf6wDqQKCOiKYVIK2LvMbPgmZui0utnIG5JQ_WiK60jOp8O3fj-yBcsOJr0sVZ0CkH7CGJOCLV5GSUHJqcH1ACANJ9PnUZcsO8refhmcBM01u67L-eSUo5NogdJt0dAfkY7ggd-nE00S5K_K27h0-D18updDNY-PaTLnYog96zYioRGvNoB5tu7hI2YFtf5smwn_ALX_AoJJf5nnrltfxQQSCaVW8">
+<div class="absolute inset-0 bg-primary/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-surface text-[18px]">zoom_in</span>
+</div>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-primary font-bold">PED-20261006-A7K4</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-primary font-bold text-secondary mt-0.5">
+                    $1,580.00 MXN
+                  </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">BBVA • Hace 14 min</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-fixed/40 px-2 py-0.5 rounded-full shrink-0">Monstera XL</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<button class="w-full h-10 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-primary transition-colors flex items-center justify-center gap-1 shadow-sm" onclick="approveSpei('spei-item-1', 'ORD-20261006-A7K4')">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                Validar a ORD
+              </button>
+<button class="w-full h-10 rounded-lg bg-surface-container text-error font-label-md text-label-md hover:bg-error-container hover:text-on-error-container transition-colors flex items-center justify-center gap-1" onclick="rejectSpei('spei-item-1')">
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+                Rechazar
+              </button>
+</div>
+</div>
+<!-- Pending Item 2 -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-sm" id="spei-item-2">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-14 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden shrink-0 shadow-sm relative group cursor-pointer" onclick="openReceiptModal()">
+<img class="w-full h-full object-cover" data-alt="A macro photo of an authentic Mexican banking transfer receipt slip showing Banorte logo, SPEI clave de rastreo, and total amount in Mexican pesos on clean background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp541wyIeku05yPZCkz-aJMvLea2BwhgdhbHRmyX17MSdxpr_7N22A15rfkfhCLUQsCcWljRtONTKpCy7RnCMEqJ0BhgKYAVBgtieSS_GUXSYvf5I7fRGP6ULUqKoHm4TKydqfhlrd28QfSU8v0qrdnT4LvToMHRH_1XKB38nhYmVDhF4s3H8Vfgxx-F11zjCQMHBySX_w7Lk7DDGaJKJrbZTATnG3zugmwshUTi4">
+<div class="absolute inset-0 bg-primary/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-surface text-[18px]">zoom_in</span>
+</div>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-primary font-bold">PED-20261006-C881</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-primary font-bold text-secondary mt-0.5">
+                    $3,200.00 MXN
+                  </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Banorte • Hace 32 min</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-fixed/40 px-2 py-0.5 rounded-full shrink-0">Ficus Lyrata</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<button class="w-full h-10 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-primary transition-colors flex items-center justify-center gap-1 shadow-sm" onclick="approveSpei('spei-item-2', 'ORD-20261006-C881')">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                Validar a ORD
+              </button>
+<button class="w-full h-10 rounded-lg bg-surface-container text-error font-label-md text-label-md hover:bg-error-container hover:text-on-error-container transition-colors flex items-center justify-center gap-1" onclick="rejectSpei('spei-item-2')">
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+                Rechazar
+              </button>
+</div>
+</div>
+</div>
+<!-- Widget 2: Alertas de Embalaje Botánico Delicado -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Alertas de Embalaje Botánico</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-tertiary-fixed-variant font-bold">Humedad Crítica</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Especímenes foráneos de follaje sensible que no deben superar 35°C en camión consolidado:
+          </p>
+<div class="space-y-space-sm">
+<!-- Item 1 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">psychiatry</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-primary block">Calathea Warscewiczii</span>
+<span class="text-[12px] text-tertiary-container font-semibold">Caja térmica + Gel pack 8°C</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-0.5 rounded text-outline font-mono">Paquetexpress</span>
+</div>
+<!-- Item 2 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-primary block">Anthurium Clarinervium</span>
+<span class="text-[12px] text-tertiary-container font-semibold">Tutor acolchado anti-quiebre</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-0.5 rounded text-outline font-mono">DHL Aéreo</span>
+</div>
+<!-- Item 3 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">eco</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-primary block">Monstera Albo Variegata</span>
+<span class="text-[12px] text-error font-semibold">Seguro de espécimen de colección</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-0.5 rounded text-outline font-mono">DHL Prioritario</span>
+</div>
+</div>
+</div>
+<!-- Widget 3: Despacho y Logística Activa del Día -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Paqueterías Activas del Día</h3>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">18 Bultos</span>
+</div>
+<div class="space-y-space-sm">
+<!-- DHL Progress -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-primary font-bold">DHL Express Nacional</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">(Recolecta 16:30)</span>
+</div>
+<span class="font-label-md text-label-md text-secondary font-bold">6 envíos</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-500" style="width: 75%"></div>
+</div>
+<div class="flex justify-between text-[12px] text-on-surface-variant">
+<span class="">5 guías impresas</span>
+<span class="">1 por empacar</span>
+</div>
+</div>
+<!-- Paquetexpress Progress -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-primary font-bold">Paquetexpress (Carga Pesada)</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">(Recolecta 17:00)</span>
+</div>
+<span class="font-label-md text-label-md text-secondary font-bold">4 envíos</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 50%"></div>
+</div>
+<div class="flex justify-between text-[12px] text-on-surface-variant">
+<span class="">2 macetones en tarima</span>
+<span class="">2 cajas madera</span>
+</div>
+</div>
+<!-- Flete Local Roma Norte -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-primary font-bold">Flete Propio Vivero CDMX</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">(Ruta en curso)</span>
+</div>
+<span class="font-label-md text-label-md text-secondary font-bold">8 envíos</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-secondary-fixed-dim h-full rounded-full transition-all duration-500" style="width: 100%"></div>
+</div>
+<div class="flex justify-between text-[12px] text-on-surface-variant">
+<span class="">Camioneta Roma #02</span>
+<span class="text-secondary font-semibold">5 entregados • 3 en ruta</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Modal / Visual Confirmation Toast for Validation (Lightweight) -->
+<div class="fixed inset-0 z-50 bg-primary/60 backdrop-blur-sm flex items-center justify-center p-4 hidden" id="receipt-modal">
+<div class="bg-surface-container-lowest max-w-lg w-full rounded-2xl shadow-xl overflow-hidden p-space-lg space-y-space-md animate-in fade-in zoom-in-95">
+<div class="flex items-center justify-between pb-2 border-b border-surface-container">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[24px]">verified_user</span>
+<h4 class="font-headline-sm text-headline-sm text-primary">Comprobante Bancario SPEI</h4>
+</div>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container" onclick="closeReceiptModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col items-center justify-center">
+<div class="w-full max-h-80 overflow-y-auto rounded-lg shadow-sm">
+<img class="w-full object-contain" data-alt="Clear high resolution voucher receipt from Mexican banking app with transaction approval code, client name, and timestamp." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEpgj8AkjxHhwRn38zaRmqfOljUBqhUHPSehsFlnlUC5h6Jwf6uiuZmXsfqQOpkBF83BRLUcppaVhG-LeV0ekO5B9Z54B99l46A-9i5OmnZFtuAiYJLyA61b7zoRdIQaEnI5kFGN-blqRMBHqBhu92FUW9a83rVID-CNiFjaLOBp-4ydW5d9KROOtCfprC3J48sVSU8sHIaZHzg8kGRcGaNTxxY6ATvFKsXpMTXrc">
+</div>
+<div class="w-full mt-3 p-3 bg-surface-container rounded-lg font-mono text-[12px] text-on-surface space-y-1">
+<p class=""><strong class="font-bold">Clave Rastreo:</strong> 2026100640014029104820194</p>
+<p class=""><strong class="font-bold">Emisor:</strong> BBVA México • Camila Morales</p>
+<p class=""><strong class="font-bold">Monto:</strong> $1,580.00 MXN (Liquidación exacta)</p>
+</div>
+</div>
+<div class="flex justify-end gap-2 pt-2">
+<button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-variant" onclick="closeReceiptModal()">
+          Cerrar Vista
+        </button>
+<button class="px-5 py-2 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-primary transition-colors flex items-center gap-1 shadow-sm" onclick="approveSpei('spei-item-1', 'ORD-20261006-A7K4'); closeReceiptModal();">
+<span class="material-symbols-outlined text-[16px]">check</span>
+          Aprobar y Emitir Orden
+        </button>
+</div>
+</div>
+</div>
+<!-- Notification Toast -->
+<div class="fixed bottom-6 right-6 z-50 max-w-md bg-primary text-on-primary p-space-md rounded-xl shadow-xl flex items-center gap-space-sm transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none" id="toast">
+<div class="w-8 h-8 rounded-full bg-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-secondary text-[18px]">check</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-md text-label-md font-bold" id="toast-title">Acción completada</p>
+<p class="font-body-sm text-body-sm text-surface-variant" id="toast-msg">La orden ha sido actualizada exitosamente.</p>
+</div>
+</div>
+</div>
+<script>
+  function filterTable(statusKey, btnElement) {
+    const buttons = document.querySelectorAll('#filter-container button');
+    buttons.forEach(b => {
+      b.className = 'px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all';
+    });
+    btnElement.className = 'px-3 py-1.5 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm transition-all';
+
+    const rows = document.querySelectorAll('#orders-table tbody tr');
+    rows.forEach(row => {
+      if (statusKey === 'todas') {
+        row.style.display = '';
+      } else {
+        const rowStatus = row.getAttribute('data-status');
+        row.style.display = (rowStatus === statusKey) ? '' : 'none';
+      }
+    });
+  }
+
+  function showToast(title, msg) {
+    const toast = document.getElementById('toast');
+    const toastTitle = document.getElementById('toast-title');
+    const toastMsg = document.getElementById('toast-msg');
+    
+    toastTitle.textContent = title;
+    toastMsg.textContent = msg;
+    toast.classList.remove('translate-y-24', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-24', 'opacity-0');
+    }, 3800);
+  }
+
+  function approveSpei(itemId, newFolio) {
+    const el = document.getElementById(itemId);
+    if (el) {
+      el.style.opacity = '0.5';
+      el.style.pointerEvents = 'none';
+      el.innerHTML = `
+        <div class="p-3 bg-secondary-fixed/50 rounded-lg text-primary flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-[20px]">task_alt</span>
+            <span class="font-label-md text-label-md font-bold">Convertido a ${newFolio}</span>
+          </div>
+          <span class="text-[12px] text-secondary font-semibold">Listo para Empaque</span>
+        </div>
+      `;
+      showToast('Comprobante Validado', `El pedido se convirtió a ${newFolio} y pasó a mesa de preparación.`);
+    }
+  }
+
+  function rejectSpei(itemId) {
+    const el = document.getElementById(itemId);
+    if (el) {
+      el.style.opacity = '0.4';
+      el.style.pointerEvents = 'none';
+      el.innerHTML = `
+        <div class="p-3 bg-error-container rounded-lg text-on-error-container flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px]">block</span>
+            <span class="font-label-md text-label-md font-bold">Comprobante Rechazado</span>
+          </div>
+          <span class="text-[12px]">Notificado por WhatsApp</span>
+        </div>
+      `;
+      showToast('Comprobante Declinado', 'Se notificó al comprador para solicitar folio rastreable válido.');
+    }
+  }
+
+  function openReceiptModal() {
+    const modal = document.getElementById('receipt-modal');
+    modal.classList.remove('hidden');
+  }
+
+  function closeReceiptModal() {
+    const modal = document.getElementById('receipt-modal');
+    modal.classList.add('hidden');
+  }
+</script></main></div>
+
+</body></html>

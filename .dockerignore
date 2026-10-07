@@ -1,0 +1,12 @@
+node_modules/
+.git/
+.env
+.env.*
+coverage/
+logs/
+backups/*.sql
+backups/*.gz
+uploads/*
+!uploads/.gitkeep
+npm-debug.log*
+.DS_Store

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#012d1d" />
+    <title>Catálogo de plantas | Planti Lovers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,400,0,0&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Planti Lovers, inicio">
+          <span class="brand-mark material-symbols-outlined" aria-hidden="true">psychiatry</span>
+          <span>planti<span class="brand-light">lovers</span></span>
+        </a>
+        <div class="header-copy">
+          <span class="eyebrow">Vivero · Catálogo 2026</span>
+          <h1>Un poco más verde, todos los días.</h1>
+        </div>
+        <button class="cart-button" id="cartToggle" type="button" aria-label="Abrir pedido, 0 productos">
+          <span class="material-symbols-outlined" aria-hidden="true">shopping_basket</span>
+          <span class="cart-button-label">Mi pedido</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="catalog-tools" aria-label="Buscar y filtrar plantas">
+        <div class="search-row">
+          <label class="search-box" for="productSearch">
+            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+            <input id="productSearch" type="search" placeholder="Buscar por nombre, SKU o categoría..." autocomplete="off" />
+            <button id="clearSearch" class="clear-search" type="button" aria-label="Limpiar búsqueda" title="Limpiar búsqueda">
+              <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
+          </label>
+          <button id="filterTrigger" class="filter-trigger" type="button" aria-label="Mostrar plantas favoritas" title="Mostrar favoritas">
+            <span class="material-symbols-outlined" aria-hidden="true">favorite</span>
+          </button>
+        </div>
+        <nav class="filter-chips" aria-label="Filtros rápidos">
+          <button class="filter-chip active" type="button" data-filter="all" aria-pressed="true">Todas</button>
+          <button class="filter-chip" type="button" data-filter="Interior" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">roofing</span>Interior</button>
+          <button class="filter-chip" type="button" data-filter="Exterior" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">wb_sunny</span>Exterior</button>
+          <button class="filter-chip" type="button" data-filter="low-water" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">water_drop</span>Poco riego</button>
+          <button class="filter-chip" type="button" data-filter="pet-friendly" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">pets</span>Pet friendly</button>
+          <button class="filter-chip" type="button" data-filter="in-stock" aria-pressed="false">En existencia</button>
+        </nav>
+        <div class="catalog-meta">
+          <p><span class="material-symbols-outlined" aria-hidden="true">eco</span><span id="resultCount">Cargando catálogo...</span></p>
+          <label class="sort-control" for="sortProducts">
+            <span class="sort-label">Ordenar:</span>
+            <select id="sortProducts">
+              <option value="popular">Más solicitadas</option>
+              <option value="price-asc">Precio: menor a mayor</option>
+              <option value="price-desc">Precio: mayor a menor</option>
+              <option value="name">Nombre</option>
+            </select>
+            <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+          </label>
+        </div>
+      </section>
+
+      <aside class="price-note">
+        <span class="note-icon material-symbols-outlined" aria-hidden="true">lightbulb</span>
+        <div>
+          <strong>Precios de referencia para cotización</strong>
+          <p>Confirmamos existencias y calculamos el envío según tu código postal al preparar el pedido.</p>
+        </div>
+      </aside>
+
+      <section id="productList" class="product-list" aria-label="Catálogo de plantas" aria-live="polite"></section>
+      <p id="catalogStatus" class="catalog-status" role="status"></p>
+    </main>
+
+    <div id="cartBackdrop" class="cart-backdrop hidden"></div>
+    <aside id="cartPanel" class="cart-panel hidden" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="cart-header">
+        <div>
+          <span class="eyebrow">Tu selección</span>
+          <h2 id="cartTitle">Resumen del pedido</h2>
+        </div>
+        <button id="closeCart" class="icon-button" type="button" aria-label="Cerrar pedido" title="Cerrar">
+          <span class="material-symbols-outlined" aria-hidden="true">close</span>
+        </button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-footer">
+        <label class="customer-field" for="customerName">Nombre para la cotización
+          <input id="customerName" type="text" maxlength="120" placeholder="Tu nombre" />
+        </label>
+        <div class="total-row"><span>Total de referencia</span><strong id="cartTotal">$0.00 MXN</strong></div>
+        <button id="checkoutBtn" class="primary-button" type="button">Solicitar cotización</button>
+        <button id="clearCart" class="text-button" type="button">Vaciar pedido</button>
+      </div>
+    </aside>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

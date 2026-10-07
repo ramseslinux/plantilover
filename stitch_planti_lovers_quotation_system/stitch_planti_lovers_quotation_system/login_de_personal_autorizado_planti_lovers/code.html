@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,600;0,700;1,600;1,700&amp;family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "outline": "#717973", "secondary-fixed-dim": "#75daa8", "inverse-surface": "#2e312d", "primary": "#012d1d", "secondary": "#006c48", "primary-fixed-dim": "#a5d0b9", "inverse-on-surface": "#eff1eb", "surface-variant": "#e1e3dd", "on-tertiary-fixed-variant": "#822801", "surface-container-lowest": "#ffffff", "tertiary-container": "#702000", "surface": "#f8faf4", "primary-fixed": "#c1ecd4", "on-tertiary-fixed": "#390c00", "secondary-container": "#92f7c3", "on-surface": "#191c19", "surface-tint": "#3f6653", "on-secondary": "#ffffff", "surface-container-highest": "#e1e3dd", "on-secondary-fixed-variant": "#005235", "on-surface-variant": "#414844", "background": "#f8faf4", "error": "#ba1a1a", "surface-dim": "#d8dbd5", "on-primary-fixed-variant": "#274e3d", "tertiary-fixed-dim": "#ffb59c", "on-background": "#191c19", "tertiary-fixed": "#ffdbcf", "secondary-fixed": "#92f7c3", "on-tertiary-container": "#ff8358", "inverse-primary": "#a5d0b9", "on-error-container": "#93000a", "primary-container": "#1b4332", "on-error": "#ffffff", "tertiary": "#4b1300", "surface-container-low": "#f2f4ee", "surface-bright": "#f8faf4", "on-primary-fixed": "#002114", "on-primary": "#ffffff", "surface-container": "#edefe9", "outline-variant": "#c1c8c2", "on-tertiary": "#ffffff", "on-primary-container": "#86af99", "on-secondary-container": "#00734d", "error-container": "#ffdad6", "surface-container-high": "#e7e9e3", "on-secondary-fixed": "#002113" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin-desktop": "2.5rem", "margin-mobile": "1rem", "gutter": "1rem", "gutter-desktop": "1.5rem", "gutter-mobile": "0.75rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "margin": "1rem", "space-md": "1rem", "space-xl": "2rem", "space-lg": "1.5rem" }, fontFamily: { "label-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Epilogue"], "headline-lg-mobile": ["Epilogue"], "headline-sm": ["Epilogue"], "label-lg": ["Plus Jakarta Sans"], "headline-xl": ["Epilogue"], "body-sm": ["Plus Jakarta Sans"], "headline-lg": ["Epilogue"], "headline-md": ["Epilogue"] }, fontSize: { "label-sm": ["11px", { lineHeight: "14px", fontWeight: "700" }], "label-md": ["13px", { lineHeight: "16px", fontWeight: "600" }], "body-lg": ["17px", { lineHeight: "26px", fontWeight: "400" }], "body-md": ["15px", { lineHeight: "22px", fontWeight: "400" }], "headline-xl-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }], "headline-lg-mobile": ["22px", { lineHeight: "30px", fontWeight: "600" }], "headline-sm": ["17px", { lineHeight: "24px", fontWeight: "600" }], "label-lg": ["15px", { lineHeight: "20px", fontWeight: "600" }], "headline-xl": ["36px", { lineHeight: "44px", fontWeight: "700" }], "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }], "headline-lg": ["28px", { lineHeight: "36px", fontWeight: "600" }], "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-secondary-fixed text-[22px]">potted_plant</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">Planti Lovers</span><span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Admin Portal</span></div></div><div class="px-space-md py-space-sm"><div class="bg-surface-container rounded-lg p-space-sm flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Sincronizado en vivo</span></div><span class="font-label-sm text-label-sm text-primary font-bold">CDMX</span></div></div><nav class="flex flex-col gap-1 px-space-sm mt-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="dashboard" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-body-md text-body-md">Dashboard</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="ordenes-vigentes" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">local_shipping</span><span class="font-body-md text-body-md">Órdenes Vigentes</span></div><span class="bg-secondary text-on-secondary font-label-sm text-label-sm px-2 py-0.5 rounded-full">8</span></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="historico-de-ordenes" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">history</span><span class="font-body-md text-body-md">Histórico de Órdenes</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="tarifarios-y-paqueteria" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-body-md text-body-md">Tarifarios &amp; Paquetería</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="catalogo-de-especies" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">psychiatry</span><span class="font-body-md text-body-md">Catálogo de Especies</span></div></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="comprobantes-por-validar" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">verified</span><span class="font-body-md text-body-md">Comprobantes por Validar</span></div><span class="bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm px-2 py-0.5 rounded-full">3</span></a></nav></div><div class="p-space-md"><div class="bg-surface-container-lowest rounded-xl p-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col min-w-0"><span class="font-label-md text-label-md text-on-surface truncate">Mariana R.</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Operaciones</span></div></div><button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">logout</span></button></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-3 py-1.5 rounded-full bg-surface-container"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary uppercase">En Operación</span></div><div class="flex items-center gap-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">storefront</span><span class="font-body-md text-body-md text-on-surface font-semibold">Vivero Roma Norte</span></div></div><div class="flex items-center gap-space-md"><div class="relative flex items-center"><button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors relative"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-tertiary-container ring-2 ring-surface"></span></button></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface font-semibold">Mariana R.</span><span class="font-label-sm text-label-sm text-secondary">Roma Norte - Ops</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full max-w-7xl mx-auto px-space-md lg:px-space-xl py-space-lg lg:py-space-xl">
+<!-- Top Context Ribbon -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-lg">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+          Terminal SSL v4.9.2
+        </span>
+<span class="text-outline text-label-sm font-label-sm">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Acceso Seguro RBAC Restringido</span>
+</div>
+<div class="flex items-center gap-space-md text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">wifi_tethering</span>
+          Enlace Cifrado Activo
+        </span>
+<span class="hidden sm:inline-block text-outline">•</span>
+<span class="hidden sm:flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+          Hora Local: 08:42 CST
+        </span>
+</div>
+</div>
+<!-- Main Asymmetric Access Container -->
+<div class="grid grid-cols-1 lg:grid-cols-12 rounded-xl shadow-xl overflow-hidden bg-surface-container-lowest">
+<!-- Left Column: Botanical Nursery Ambience & Operational Metrics (5 cols) -->
+<div class="lg:col-span-5 relative flex flex-col justify-between p-space-lg lg:p-space-xl overflow-hidden bg-primary text-on-primary min-h-[580px] lg:min-h-[720px]">
+<!-- Botanical Backdrop Image with Scrim -->
+<div class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity" data-alt="High-end botanical greenhouse nursery interior filled with lush Monstera deliciosa, mature Ficus lyrata, and vibrant Calathea foliage bathed in soft morning diffuse sunlight. Warm earthy terracotta planters and refined architectural glass roof with soft atmospheric mist. Editorial botanical retail aesthetic, deep forest green and organic calm tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLklKGIJJ_yPskJaiN-scfzgZsl52DYJvfRrnLjVJ8G2vbmUwkySBa81Rh2ohCDprB8ExDdmmaXB-WLBcYkmLewvL8HUPgQ_ftF9yjPgxx8eAoL9B2bDwHJR8OvdZ8knuaGFN6Xw3i0zmoVk4Z5wn41hHQyfVVbRlcoK_OXwzvS-V06YXsysiljT7b1Ar_ZPg0i-A_g_3Ode0Shok92bIAaIMnTOYMFZtnMFzZFTQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-primary/95 via-primary/80 to-primary/95"></div>
+<!-- Botanical Accent Glow -->
+<div class="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-secondary/20 blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-tertiary-container/30 blur-3xl pointer-events-none"></div>
+<!-- Upper Content: Brand Identity & Node Badge -->
+<div class="relative z-10 flex flex-col gap-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest/10 backdrop-blur-md flex items-center justify-center text-secondary-fixed">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">potted_plant</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-primary tracking-tight">Planti Lovers</span>
+<span class="font-label-sm text-label-sm text-secondary-fixed uppercase tracking-widest">Botany Logistics Core</span>
+</div>
+</div>
+<div class="inline-flex items-center gap-2 self-start px-3 py-1.5 rounded-full bg-surface-container-lowest/10 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed animate-ping"></span>
+<span class="font-label-sm text-label-sm text-on-primary tracking-wide">Nodo Operativo Roma Norte • Activo</span>
+</div>
+<div class="flex flex-col gap-2 mt-space-sm">
+<h2 class="font-headline-lg text-headline-lg text-on-primary leading-tight">
+              Custodia botánica y despacho trazable de vida vegetal.
+            </h2>
+<p class="font-body-md text-body-md text-primary-fixed-dim max-w-sm">
+              Plataforma de orquestación para conservación de especímenes, control fitosanitario de vivero y rutas vivas en tiempo real.
+            </p>
+</div>
+</div>
+<!-- Middle Content: Live Nursery KPIs Bento -->
+<div class="relative z-10 grid grid-cols-2 gap-space-sm my-space-lg">
+<!-- Card 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest/10 backdrop-blur-md flex flex-col justify-between">
+<div class="flex items-center justify-between text-secondary-fixed mb-1">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim">Hoy</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-primary font-bold">48</div>
+<div class="font-label-sm text-label-sm text-primary-fixed-dim">Órdenes vivas listas</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest/10 backdrop-blur-md flex flex-col justify-between">
+<div class="flex items-center justify-between text-secondary-fixed mb-1">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim">Ratio</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-primary font-bold">99.8%</div>
+<div class="font-label-sm text-label-sm text-primary-fixed-dim">Efectividad empaque</div>
+</div>
+</div>
+<!-- Card 3: Specimen Care Telemetry -->
+<div class="col-span-2 p-space-md rounded-xl bg-surface-container-lowest/10 backdrop-blur-md flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest/15 flex items-center justify-center text-secondary-fixed">
+<span class="material-symbols-outlined text-[18px]">thermostat</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-primary">Microclima Roma Norte</span>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim">22.4°C • 68% Humedad Óptima</span>
+</div>
+</div>
+<!-- Mini Progress Ring SVG -->
+<div class="relative w-9 h-9 flex items-center justify-center">
+<svg class="w-9 h-9 -rotate-90" viewbox="0 0 36 36">
+<circle class="stroke-primary-container" cx="18" cy="18" fill="none" r="14" stroke-width="3"></circle>
+<circle class="stroke-secondary-fixed" cx="18" cy="18" fill="none" r="14" stroke-dasharray="88" stroke-dashoffset="24" stroke-linecap="round" stroke-width="3"></circle>
+</svg>
+<span class="absolute text-[10px] font-bold text-on-primary">94%</span>
+</div>
+</div>
+</div>
+<!-- Lower Botanical Verification Note -->
+<div class="relative z-10 pt-space-sm">
+<div class="flex items-center gap-2 text-primary-fixed-dim font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">shield_lock</span>
+<span>Certificación de bioseguridad botánica NOM-Fito-02</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Authentication Card & Role Matrix (7 cols) -->
+<div class="lg:col-span-7 p-space-lg lg:p-space-xl flex flex-col justify-between bg-surface-container-lowest">
+<div>
+<!-- Header Area -->
+<div class="flex flex-wrap items-start justify-between gap-space-sm mb-space-lg">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest font-bold">Portal Interno</span>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight mt-1">Iniciar Sesión</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                Ingresa con tus credenciales asignadas de vivero o administración.
+              </p>
+</div>
+<!-- Quick Mode Switcher (Password vs PIN) -->
+<div class="bg-surface-container p-1 rounded-xl flex items-center gap-1">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm transition-all flex items-center gap-1.5" id="tabPasswordBtn" type="button">
+<span class="material-symbols-outlined text-[16px]">key</span>
+                Credenciales
+              </button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1.5" id="tabPinBtn" type="button">
+<span class="material-symbols-outlined text-[16px]">dialpad</span>
+                PIN Rápido
+              </button>
+</div>
+</div>
+<!-- Role / Operational Profile Selector -->
+<div class="mb-space-lg">
+<div class="flex items-center justify-between mb-2">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Perfil de Operación</label>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Define permisos de consola</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm" id="roleSelector">
+<!-- Role 1 -->
+<button class="role-btn p-space-md rounded-xl bg-surface-container hover:bg-surface-container-high transition-all text-left flex flex-col justify-between relative group" data-role="admin" type="button">
+<div class="flex items-center justify-between w-full mb-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+</div>
+<span class="w-4 h-4 rounded-full bg-secondary flex items-center justify-center text-on-secondary hidden active-indicator">
+<span class="material-symbols-outlined text-[12px]">check</span>
+</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Admin &amp; Finanzas</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Control global</div>
+</div>
+</button>
+<!-- Role 2: Active Default -->
+<button class="role-btn p-space-md rounded-xl bg-primary text-on-primary shadow-md transition-all text-left flex flex-col justify-between relative group" data-role="ops" type="button">
+<div class="flex items-center justify-between w-full mb-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest/20 text-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">yard</span>
+</div>
+<span class="w-4 h-4 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center active-indicator">
+<span class="material-symbols-outlined text-[12px] font-bold">check</span>
+</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-primary font-semibold">Operador Vivero</div>
+<div class="font-label-sm text-label-sm text-primary-fixed-dim mt-0.5">Mesa &amp; Empaque</div>
+</div>
+</button>
+<!-- Role 3 -->
+<button class="role-btn p-space-md rounded-xl bg-surface-container hover:bg-surface-container-high transition-all text-left flex flex-col justify-between relative group" data-role="quotes" type="button">
+<div class="flex items-center justify-between w-full mb-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">support_agent</span>
+</div>
+<span class="w-4 h-4 rounded-full bg-secondary flex items-center justify-center text-on-secondary hidden active-indicator">
+<span class="material-symbols-outlined text-[12px]">check</span>
+</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Atención &amp; Quotes</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Ventas directas</div>
+</div>
+</button>
+</div>
+</div>
+<!-- Credential Form View -->
+<form class="flex flex-col gap-space-md" id="credentialForm">
+<!-- Corporate Email Field -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold flex items-center justify-between" for="corporateEmail">
+<span>Correo Corporativo</span>
+<span class="font-label-sm text-label-sm text-secondary">@plantilovers.mx</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-outline text-[20px] pointer-events-none">mail</span>
+<input class="w-full h-12 pl-11 pr-4 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary transition-all" id="corporateEmail" placeholder="nombre.apellido@plantilovers.mx" required="" type="email" value="mariana.r@plantilovers.mx"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="userPassword">Contraseña</label>
+<a class="font-label-sm text-label-sm text-secondary hover:underline transition-all" href="#">¿Olvidaste tu contraseña?</a>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-outline text-[20px] pointer-events-none">lock</span>
+<input class="w-full h-12 pl-11 pr-12 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary transition-all" id="userPassword" placeholder="Ingresa tu clave de acceso" required="" type="password" value="••••••••••••"/>
+<button aria-label="Mostrar u ocultar contraseña" class="absolute right-3.5 text-outline hover:text-on-surface transition-colors p-1" id="togglePasswordBtn" type="button">
+<span class="material-symbols-outlined text-[20px]" id="togglePasswordIcon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Hub / Shift Location Selector -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="hubSelect">Vivero / Nodo Operativo</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-outline text-[20px] pointer-events-none">storefront</span>
+<select class="w-full h-12 pl-11 pr-8 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md appearance-none focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary transition-all cursor-pointer" id="hubSelect">
+<option selected="" value="roma">Vivero 01 — Roma Norte (CDMX)</option>
+<option value="coyoacan">Vivero 02 — Coyoacán Botánico</option>
+<option value="satelite">Vivero 03 — Satélite Hub Norte</option>
+<option value="almacen_central">Almacén Central Xochimilco</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 text-outline text-[20px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="shiftSelect">Turno de Guardián</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-outline text-[20px] pointer-events-none">routine</span>
+<select class="w-full h-12 pl-11 pr-8 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md appearance-none focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary transition-all cursor-pointer" id="shiftSelect">
+<option selected="" value="matutino">Matutino (07:00 - 15:30)</option>
+<option value="vespertino">Vespertino (15:00 - 22:30)</option>
+<option value="completo">Jornada Extendida / Despacho</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 text-outline text-[20px] pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Keep Session Active Checkbox -->
+<div class="flex items-center gap-space-sm pt-1">
+<input checked="" class="w-4 h-4 rounded text-secondary focus:ring-secondary accent-secondary cursor-pointer" id="keepActive" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface-variant cursor-pointer select-none" for="keepActive">
+                Mantener sesión activa en esta estación de mesa de vivero (12 horas)
+              </label>
+</div>
+<!-- Submit Primary CTA -->
+<button class="w-full h-12 mt-space-sm rounded-lg bg-primary hover:bg-secondary text-on-primary font-headline-sm text-headline-sm flex items-center justify-center gap-space-sm shadow-md transition-all active:scale-[0.99] group" type="submit">
+<span>Acceder al Panel Operativo</span>
+<span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</form>
+<!-- Alternative Terminal PIN View (Hidden by default) -->
+<div class="hidden flex flex-col gap-space-md" id="pinFormView">
+<div class="p-space-md rounded-xl bg-surface-container text-center flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-[32px] mb-1">pin</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Terminal Rápida de Mesa de Empaque</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm mt-1">
+                Usa tu PIN de 4 o 6 dígitos asignado por tu jefe de vivero para validación rápida de empaques.
+              </p>
+</div>
+<div class="flex justify-center gap-space-sm my-space-sm">
+<input class="pin-digit w-12 h-14 text-center font-headline-lg text-headline-lg font-bold rounded-lg bg-surface-container-low text-primary focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary focus:outline-none" maxlength="1" type="password" value="4"/>
+<input class="pin-digit w-12 h-14 text-center font-headline-lg text-headline-lg font-bold rounded-lg bg-surface-container-low text-primary focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary focus:outline-none" maxlength="1" type="password" value="8"/>
+<input class="pin-digit w-12 h-14 text-center font-headline-lg text-headline-lg font-bold rounded-lg bg-surface-container-low text-primary focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary focus:outline-none" maxlength="1" type="password" value="1"/>
+<input class="pin-digit w-12 h-14 text-center font-headline-lg text-headline-lg font-bold rounded-lg bg-surface-container-low text-primary focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary focus:outline-none" maxlength="1" placeholder="•" type="password"/>
+</div>
+<button class="w-full h-12 rounded-lg bg-primary hover:bg-secondary text-on-primary font-headline-sm text-headline-sm flex items-center justify-center gap-space-sm shadow-md transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">lock_open</span>
+<span>Validar PIN de Mesa</span>
+</button>
+</div>
+</div>
+<!-- Footer Audit Notice & IT Assistance -->
+<div class="mt-space-xl pt-space-md border-0 bg-surface-container-low/60 rounded-xl p-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm text-on-surface-variant">
+<div class="flex items-start gap-space-xs text-left">
+<span class="material-symbols-outlined text-[18px] text-secondary mt-0.5">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Trazabilidad Fitosanitaria Activa</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Registro inmutable SHA-256 según norma NOM-Fito-02.</span>
+</div>
+</div>
+<a class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary hover:text-primary transition-colors whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[16px]">contact_support</span>
+<span>Mesa de Ayuda IT</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Bottom Contextual Security Strip -->
+<div class="mt-space-md px-space-sm flex flex-wrap items-center justify-between gap-space-sm text-outline font-label-sm text-label-sm">
+<div class="flex items-center gap-space-md">
+<span>© 2024 Planti Lovers S.A. de C.V.</span>
+<span>•</span>
+<span>Sistema de Abastecimiento &amp; Cuidado Vivo</span>
+<span>•</span>
+<span class="text-secondary font-bold">Build 14.8-cdmx</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span>Conexión segura de 256 bits protegida por Cloudflare MTLS</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Interactive Toggle for Password Visibility
+  const toggleBtn = document.getElementById('togglePasswordBtn');
+  const passwordInput = document.getElementById('userPassword');
+  const toggleIcon = document.getElementById('togglePasswordIcon');
+
+  if (toggleBtn && passwordInput && toggleIcon) {
+    toggleBtn.addEventListener('click', () => {
+      const isPassword = passwordInput.getAttribute('type') === 'password';
+      passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+      toggleIcon.textContent = isPassword ? 'visibility_off' : 'visibility';
+    });
+  }
+
+  // Quick Switcher between Credential and PIN login
+  const tabPasswordBtn = document.getElementById('tabPasswordBtn');
+  const tabPinBtn = document.getElementById('tabPinBtn');
+  const credentialForm = document.getElementById('credentialForm');
+  const pinFormView = document.getElementById('pinFormView');
+
+  if (tabPasswordBtn && tabPinBtn && credentialForm && pinFormView) {
+    tabPasswordBtn.addEventListener('click', () => {
+      tabPasswordBtn.className = 'px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm transition-all flex items-center gap-1.5';
+      tabPinBtn.className = 'px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1.5';
+      credentialForm.classList.remove('hidden');
+      pinFormView.classList.add('hidden');
+    });
+
+    tabPinBtn.addEventListener('click', () => {
+      tabPinBtn.className = 'px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm transition-all flex items-center gap-1.5';
+      tabPasswordBtn.className = 'px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1.5';
+      pinFormView.classList.remove('hidden');
+      credentialForm.classList.add('hidden');
+    });
+  }
+
+  // Interactive Role Selector Matrix
+  const roleButtons = document.querySelectorAll('.role-btn');
+  roleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      roleButtons.forEach(b => {
+        // Reset inactive styles
+        b.className = 'role-btn p-space-md rounded-xl bg-surface-container hover:bg-surface-container-high transition-all text-left flex flex-col justify-between relative group';
+        const title = b.querySelector('.font-label-md');
+        if (title) title.className = 'font-label-md text-label-md text-on-surface font-semibold';
+        const sub = b.querySelector('.font-label-sm');
+        if (sub) sub.className = 'font-label-sm text-label-sm text-on-surface-variant mt-0.5';
+        const ind = b.querySelector('.active-indicator');
+        if (ind) ind.classList.add('hidden');
+      });
+
+      // Apply active style
+      btn.className = 'role-btn p-space-md rounded-xl bg-primary text-on-primary shadow-md transition-all text-left flex flex-col justify-between relative group';
+      const activeTitle = btn.querySelector('.font-label-md');
+      if (activeTitle) activeTitle.className = 'font-label-md text-label-md text-on-primary font-semibold';
+      const activeSub = btn.querySelector('.font-label-sm');
+      if (activeSub) activeSub.className = 'font-label-sm text-label-sm text-primary-fixed-dim mt-0.5';
+      const activeInd = btn.querySelector('.active-indicator');
+      if (activeInd) {
+        activeInd.classList.remove('hidden');
+        activeInd.className = 'w-4 h-4 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center active-indicator';
+      }
+    });
+  });
+</script></main></div>
+</body></html>
