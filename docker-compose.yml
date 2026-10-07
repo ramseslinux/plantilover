@@ -9,8 +9,6 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    ports:
-      - "0.0.0.0:${POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -36,6 +34,8 @@ services:
       PORT: ${APP_PORT:-3000}
       DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       SESSION_SECRET: ${SESSION_SECRET}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
       APP_BASE_URL: ${APP_BASE_URL}
       WHATSAPP_NUMBER: ${WHATSAPP_NUMBER}
       CORS_ORIGIN: ${CORS_ORIGIN}
