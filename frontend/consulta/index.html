@@ -66,15 +66,30 @@
           <p class="reference-note">El precio y la disponibilidad se confirman con el vivero; el costo de envío puede requerir validación adicional.</p>
         </section>
 
+        <section id="paymentProofSection" class="tracking-section payment-proof-section hidden">
+          <div class="section-heading"><span class="material-symbols-outlined" aria-hidden="true">receipt_long</span><h3>Comprobante de pago</h3></div>
+          <p id="paymentProofHint" class="reference-note">Sube una imagen clara de tu comprobante para que el vivero pueda revisarlo.</p>
+          <form id="paymentProofForm" class="payment-proof-form">
+            <label class="proof-picker" for="paymentProofFile"><span class="material-symbols-outlined" aria-hidden="true">add_a_photo</span><span>Tomar foto o elegir imagen</span></label>
+            <input id="paymentProofFile" type="file" accept="image/jpeg,image/png,image/webp" capture="environment" required />
+            <p id="paymentProofMessage" class="form-message" role="status" aria-live="polite"></p>
+            <button id="paymentProofButton" class="lookup-button" type="submit"><span>Enviar comprobante</span><span class="material-symbols-outlined" aria-hidden="true">upload</span></button>
+          </form>
+        </section>
+
         <section id="shippingDetails" class="shipping-details hidden">
           <div class="section-heading"><span class="material-symbols-outlined" aria-hidden="true">local_shipping</span><h3>Seguimiento de envío</h3></div>
           <dl class="order-meta shipping-meta">
+            <div><dt>Estado</dt><dd id="shippingStatusDisplay"></dd></div>
             <div><dt>Transportista</dt><dd id="shippingCarrier"></dd></div>
             <div><dt>Número de guía</dt><dd id="trackingNumber"></dd></div>
+            <div><dt>Fecha de envío</dt><dd id="shippingDate"></dd></div>
             <div><dt>Notas</dt><dd id="shippingNotes"></dd></div>
           </dl>
+          <a id="trackingLink" class="tracking-link hidden" target="_blank" rel="noopener noreferrer">Rastrear paquete <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span></a>
         </section>
       </section>
+      <a id="whatsappLink" class="whatsapp-link hidden" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined" aria-hidden="true">chat</span>Contactar al vivero por WhatsApp</a>
       <footer class="tracking-footer"><a href="/">Volver al catálogo</a></footer>
     </main>
     <script src="../consulta.js"></script>

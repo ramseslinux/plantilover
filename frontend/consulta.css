@@ -104,10 +104,23 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .order-total { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-top: 14px; color: var(--muted); font-size: 11px; }
 .order-total strong { color: var(--evergreen); font: 700 18px 'Epilogue', sans-serif; white-space: nowrap; }
 .reference-note { margin: 9px 0 0; color: var(--muted); font-size: 9px; line-height: 1.5; }
+.payment-proof-form { display: grid; gap: 9px; margin-top: 12px; }
+.payment-proof-form input[type="file"] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+.proof-picker { min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px dashed #8aa996; border-radius: 6px; color: var(--forest); font-size: 11px; font-weight: 700; cursor: pointer; }
+.proof-picker:hover { background: var(--surface-low); }
+.payment-proof-form .form-message { min-height: 16px; margin: 0; color: var(--error); font-size: 10px; }
+.payment-proof-form .lookup-button { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 0; border-radius: 6px; background: var(--evergreen); color: white; font-size: 11px; font-weight: 700; }
+.payment-proof-form .lookup-button:hover { background: var(--green); }
+.payment-proof-form .lookup-button:disabled { opacity: .7; cursor: wait; }
 .shipping-meta { padding: 0; border: 0; background: transparent; }
 .tracking-footer { padding: 20px 0; text-align: center; }
 .tracking-footer a { color: var(--green); font-size: 11px; font-weight: 700; text-decoration: none; }
 .tracking-footer a:hover { text-decoration: underline; }
+.tracking-link, .whatsapp-link { width: fit-content; display: inline-flex; align-items: center; gap: 7px; margin-top: 12px; padding: 10px 12px; border-radius: 6px; background: #e1f4e8; color: var(--evergreen); font-size: 11px; font-weight: 700; text-decoration: none; }
+.tracking-link:hover, .whatsapp-link:hover { background: #c8ead5; }
+.tracking-link .material-symbols-outlined, .whatsapp-link .material-symbols-outlined { font-size: 17px; }
+.whatsapp-link { margin: 14px 0 0; background: var(--evergreen); color: white; }
+.whatsapp-link:hover { background: var(--green); }
 
 @media (max-width: 560px) {
   .track-header { height: 58px; padding: 0 14px; }

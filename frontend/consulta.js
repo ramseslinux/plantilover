@@ -1,6 +1,4 @@
-const API_BASE = window.location.port === '8080'
-  ? `${window.location.protocol}//${window.location.hostname}:3000`
-  : '';
+const API_BASE = '';
 const money = new Intl.NumberFormat('es-MX', {
   style: 'currency',
   currency: 'MXN',
@@ -28,6 +26,12 @@ const shippingLabels = {
   shipped: 'Enviado',
   delivered: 'Entregado',
 };
+const shippingStatusLabels = {
+  not_requested: 'Sin solicitar',
+  pending: 'Pendiente de envío',
+  shipped: 'Enviado',
+  delivered: 'Entregado',
+};
 const documentLabels = { PED: 'Cotización', ORD: 'Orden' };
 
 const lookupForm = document.getElementById('lookupForm');
@@ -35,6 +39,7 @@ const orderInput = document.getElementById('orderNumber');
 const lookupButton = document.getElementById('lookupButton');
 const lookupMessage = document.getElementById('lookupMessage');
 const orderResult = document.getElementById('orderResult');
+let currentOrderNumber = null;
 
 function escapeHTML(value) {
   return String(value ?? '').replace(/[&<>"']/g, (character) => ({
@@ -82,12 +87,19 @@ function renderTimeline(order) {
 }
 
 function renderOrder(order) {
+  currentOrderNumber = order.publicOrderNumber;
   document.getElementById('resultFolio').textContent = order.publicOrderNumber;
   document.getElementById('resultCustomer').textContent = order.customerName || 'Cliente';
   document.getElementById('resultDate').textContent = formatDate(order.createdAt);
   document.getElementById('resultType').textContent = documentLabels[order.documentType] || 'Documento';
   document.getElementById('resultPayment').textContent = paymentLabels[order.paymentStatus] || 'Por confirmar';
   document.getElementById('resultTotal').textContent = `${money.format(Number(order.total))} MXN`;
+  const proofSection = document.getElementById('paymentProofSection');
+  const canUploadProof = ['pending', 'rejected'].includes(order.paymentStatus);
+  proofSection.classList.toggle('hidden', !canUploadProof);
+  document.getElementById('paymentProofHint').textContent = order.paymentStatus === 'rejected'
+    ? 'El comprobante anterior requiere corrección. Puedes enviar una nueva imagen para revisión.'
+    : 'Sube una imagen clara de tu comprobante para que el vivero pueda revisarlo.';
 
   const status = order.status === 'pending' && order.paymentStatus === 'pending_review'
     ? 'Comprobante en revisión'
@@ -118,13 +130,22 @@ function renderOrder(order) {
     </article>`).join('') || '<p class="empty-items">No hay artículos para mostrar.</p>';
 
   const shippingDetails = document.getElementById('shippingDetails');
-  const hasShippingInfo = order.shippingCarrier || order.trackingNumber || order.shippingNotes;
+  const hasShippingInfo = order.shippingStatus !== 'not_requested' || order.shippingCarrier || order.trackingNumber || order.shippingNotes;
   shippingDetails.classList.toggle('hidden', !hasShippingInfo);
   if (hasShippingInfo) {
+    document.getElementById('shippingStatusDisplay').textContent = shippingStatusLabels[order.shippingStatus] || 'Por confirmar';
     document.getElementById('shippingCarrier').textContent = order.shippingCarrier || 'Pendiente';
     document.getElementById('trackingNumber').textContent = order.trackingNumber || 'Aún no asignada';
+    document.getElementById('shippingDate').textContent = order.shippedAt ? formatDate(order.shippedAt) : 'Pendiente';
     document.getElementById('shippingNotes').textContent = order.shippingNotes || '—';
+    const trackingLink = document.getElementById('trackingLink');
+    trackingLink.classList.toggle('hidden', !order.trackingUrl);
+    if (order.trackingUrl) trackingLink.href = order.trackingUrl;
   }
+
+  const whatsappLink = document.getElementById('whatsappLink');
+  whatsappLink.classList.toggle('hidden', !order.whatsappUrl);
+  if (order.whatsappUrl) whatsappLink.href = order.whatsappUrl;
 
   renderTimeline(order);
   orderResult.classList.remove('hidden');
@@ -163,6 +184,46 @@ async function lookupOrder(folio) {
 lookupForm.addEventListener('submit', (event) => {
   event.preventDefault();
   lookupOrder(orderInput.value);
+});
+
+document.getElementById('paymentProofForm').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  if (!currentOrderNumber) return;
+  const input = document.getElementById('paymentProofFile');
+  const file = input.files[0];
+  const message = document.getElementById('paymentProofMessage');
+  const button = document.getElementById('paymentProofButton');
+  if (!file) return;
+  if (file.size > 1024 * 1024) {
+    message.textContent = 'La imagen debe pesar 1 MB o menos.';
+    return;
+  }
+  button.disabled = true;
+  message.textContent = '';
+  try {
+    const content = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(new Error('No se pudo leer la imagen.'));
+      reader.readAsDataURL(file);
+    });
+    const response = await fetch(`${API_BASE}/api/orders/${encodeURIComponent(currentOrderNumber)}/payment-proof`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fileName: file.name, mimeType: file.type, content }),
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || 'No se pudo enviar el comprobante.');
+    input.value = '';
+    await lookupOrder(currentOrderNumber);
+    const notice = document.getElementById('resultNotice');
+    notice.textContent = 'Recibimos tu comprobante. El equipo de Planti Lovers lo revisará.';
+    notice.className = 'result-notice notice-success';
+  } catch (error) {
+    message.textContent = error.message || 'No se pudo conectar con el servidor.';
+  } finally {
+    button.disabled = false;
+  }
 });
 
 const initialFolio = new URLSearchParams(window.location.search).get('folio');

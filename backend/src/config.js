@@ -11,9 +11,9 @@ for (const envPath of [
 export const config = {
   nodeEnv: process.env.NODE_ENV || 'development',
   port: Number(process.env.PORT || 3000),
-  corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:8080',
+  corsOrigin: process.env.CORS_ORIGIN || process.env.APP_BASE_URL || 'http://localhost',
   sessionSecret: process.env.SESSION_SECRET || 'change_me_session_secret',
   appBaseUrl: process.env.APP_BASE_URL || 'http://localhost',
-  whatsappNumber: process.env.WHATSAPP_NUMBER || '5491112345678',
+  whatsappNumber: process.env.WHATSAPP_NUMBER || '',
   databaseUrl: process.env.DATABASE_URL || null,
 };

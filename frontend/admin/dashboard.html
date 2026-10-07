@@ -52,11 +52,12 @@
           </label>
         </div>
         <nav class="order-filters" aria-label="Filtrar órdenes">
+          <button class="order-filter scope-toggle active" type="button" data-scope="active" aria-pressed="true">Vigentes</button>
+          <button class="order-filter scope-toggle" type="button" data-scope="archived" aria-pressed="false">Histórico <span id="countArchived">0</span></button>
           <button class="order-filter active" type="button" data-filter="all" aria-pressed="true">Todas <span id="countAll">0</span></button>
           <button class="order-filter" type="button" data-filter="pending" aria-pressed="false">Pendientes <span id="countPending">0</span></button>
           <button class="order-filter" type="button" data-filter="processing" aria-pressed="false">En proceso <span id="countProcessing">0</span></button>
           <button class="order-filter" type="button" data-filter="shipping" aria-pressed="false">En envío <span id="countShipping">0</span></button>
-          <button class="order-filter" type="button" data-filter="archived" aria-pressed="false">Archivadas <span id="countArchived">0</span></button>
         </nav>
         <div class="table-wrap">
           <table class="orders-table">
@@ -67,6 +68,28 @@
         </div>
         <p id="dashboardMessage" class="dashboard-message" role="status" aria-live="polite"></p>
       </section>
+      <section class="orders-section rate-import-section" aria-labelledby="rateImportTitle">
+        <div class="orders-heading">
+          <div><h2 id="rateImportTitle">Tarifarios de paquetería</h2><p>Importa una nueva versión CSV; los tarifarios anteriores se conservan.</p></div>
+        </div>
+        <form id="shippingRateImportForm" class="rate-import-form">
+          <label for="rateProvider">Paquetería</label><input id="rateProvider" maxlength="160" required placeholder="Nombre del proveedor" />
+          <label for="rateVersion">Versión</label><input id="rateVersion" maxlength="120" required placeholder="Ej. 2026-10" />
+          <label for="rateCsvFile">Archivo CSV</label><input id="rateCsvFile" type="file" accept=".csv,text/csv" required />
+          <p id="rateImportMessage" class="form-message" role="status" aria-live="polite"></p>
+          <button id="importRatesButton" class="refresh-button" type="submit"><span class="material-symbols-outlined" aria-hidden="true">upload_file</span><span>Importar tarifario</span></button>
+        </form>
+      </section>
+      <section class="orders-section archive-settings-section" aria-labelledby="archiveSettingsTitle">
+        <div class="orders-heading">
+          <div><h2 id="archiveSettingsTitle">Depuración del histórico</h2><p>Los pedidos sin pago se moverán al histórico después del plazo configurado.</p></div>
+        </div>
+        <form id="archiveSettingsForm" class="archive-settings-form">
+          <label for="archiveDays">Días de inactividad</label><input id="archiveDays" type="number" min="1" max="3650" step="1" required value="30" />
+          <button id="saveArchiveDaysButton" class="refresh-button" type="submit"><span class="material-symbols-outlined" aria-hidden="true">save</span><span>Guardar plazo</span></button>
+          <p id="archiveSettingsMessage" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
     </main>
 
     <div id="detailBackdrop" class="drawer-backdrop hidden"></div>
@@ -76,7 +99,54 @@
         <button id="closeDrawer" class="icon-button" type="button" aria-label="Cerrar detalle"><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
       </div>
       <div id="drawerContent" class="drawer-content"></div>
+      <div class="archive-actions">
+        <button id="archiveOrderButton" class="refresh-button" type="button"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span><span>Mover a histórico</span></button>
+        <button id="restoreOrderButton" class="refresh-button hidden" type="button"><span class="material-symbols-outlined" aria-hidden="true">restore</span><span>Recuperar pedido</span></button>
+      </div>
+      <form id="shippingUpdateForm" class="shipping-form">
+        <h3 class="drawer-section-title">Envío y rastreo</h3>
+        <label for="shippingStatus">Estado de envío</label>
+        <select id="shippingStatus"><option value="not_requested">Sin solicitar</option><option value="pending">Pendiente</option><option value="shipped">Enviado</option><option value="delivered">Entregado</option></select>
+        <label for="shippingCarrier">Transportista</label><input id="shippingCarrier" maxlength="120" placeholder="DHL, Estafeta, FedEx..." />
+        <label for="shippingService">Servicio</label><input id="shippingService" maxlength="160" placeholder="Terrestre, express..." />
+        <label for="trackingNumberInput">Número de guía</label><input id="trackingNumberInput" maxlength="120" />
+        <label for="shippingPostalCode">Código postal de destino</label><input id="shippingPostalCode" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" />
+        <label for="shippingWeight">Peso para cotización (kg)</label><input id="shippingWeight" type="number" min="0" step="0.01" value="0" />
+        <button id="quoteShippingRateButton" class="refresh-button" type="button"><span class="material-symbols-outlined" aria-hidden="true">calculate</span><span>Consultar tarifa</span></button>
+        <div class="shipping-rate-fields"><div><label for="shippingRateOriginal">Tarifa base (MXN)</label><input id="shippingRateOriginal" type="number" min="0" step="0.01" /></div><div><label for="shippingRateFinal">Costo confirmado (MXN)</label><input id="shippingRateFinal" type="number" min="0" step="0.01" /></div></div>
+        <label for="shippingRateVersion">Versión del tarifario</label><input id="shippingRateVersion" maxlength="120" />
+        <label for="shippingNotesInput">Notas de envío</label><textarea id="shippingNotesInput" rows="2" maxlength="1000"></textarea>
+        <label class="shipping-override"><input id="shippingManualOverride" type="checkbox" /> Ajuste manual al costo</label>
+        <p id="shippingMessage" class="form-message" role="status" aria-live="polite"></p>
+        <button id="saveShippingButton" class="refresh-button" type="submit"><span class="material-symbols-outlined" aria-hidden="true">local_shipping</span><span>Guardar envío</span></button>
+      </form>
+      <section class="drawer-attachments" aria-labelledby="proofsTitle">
+        <h3 id="proofsTitle" class="drawer-section-title">Comprobantes de pago</h3>
+        <div id="paymentProofList" class="attachment-list"><p class="drawer-muted">Cargando comprobantes...</p></div>
+        <h3 class="drawer-section-title">Evidencia de empaque y envío</h3>
+        <div id="shippingEvidenceList" class="attachment-list"><p class="drawer-muted">Cargando evidencia...</p></div>
+        <form id="evidenceUploadForm" class="evidence-form">
+          <p class="drawer-muted">Fotografía el paquete antes de sellar la caja o agrega evidencia del envío.</p>
+          <label for="evidenceContext">Contexto de la foto</label>
+          <select id="evidenceContext" required>
+            <option value="packing">Paquete embalado</option>
+            <option value="shipping">Envío y guía</option>
+            <option value="other">Otra evidencia</option>
+          </select>
+          <label class="upload-picker" for="evidenceFile"><span class="material-symbols-outlined" aria-hidden="true">add_a_photo</span><span>Tomar foto o elegir imagen</span></label>
+          <input id="evidenceFile" type="file" accept="image/jpeg,image/png,image/webp" capture="environment" required />
+          <p id="evidenceMessage" class="form-message" role="status" aria-live="polite"></p>
+          <button id="uploadEvidenceButton" class="refresh-button" type="submit"><span class="material-symbols-outlined" aria-hidden="true">upload</span><span>Guardar evidencia</span></button>
+        </form>
+      </section>
       <form id="orderUpdateForm" class="drawer-form">
+        <label for="paymentMethod">Forma de pago</label>
+        <select id="paymentMethod">
+          <option value="unspecified">Sin registrar</option>
+          <option value="cash">Efectivo</option>
+          <option value="transfer">Transferencia SPEI</option>
+          <option value="other">Otro</option>
+        </select>
         <label for="orderStatus">Estado del pedido</label>
         <select id="orderStatus">
           <option value="pending">Pendiente</option>
@@ -85,7 +155,6 @@
           <option value="shipping">En envío</option>
           <option value="delivered">Entregado</option>
           <option value="cancelled">Cancelado</option>
-          <option value="archived">Archivado</option>
         </select>
         <label for="paymentStatus">Estado del pago</label>
         <select id="paymentStatus">

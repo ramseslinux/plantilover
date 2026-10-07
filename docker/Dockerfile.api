@@ -5,10 +5,13 @@ WORKDIR /app
 RUN apk add --no-cache python3 make g++
 
 COPY backend/package*.json ./backend/
-RUN cd backend && npm install --omit=dev
+RUN cd backend && npm ci --omit=dev
 
 COPY backend ./backend
 COPY database ./database
+
+RUN mkdir -p /app/uploads && chown -R node:node /app/uploads
+USER node
 
 EXPOSE 3000
 

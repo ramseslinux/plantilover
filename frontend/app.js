@@ -1,6 +1,4 @@
-const API_BASE = window.location.port === '8080'
-  ? `${window.location.protocol}//${window.location.hostname}:3000`
-  : '';
+const API_BASE = '';
 const money = new Intl.NumberFormat('es-MX', {
   style: 'currency',
   currency: 'MXN',

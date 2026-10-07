@@ -21,3 +21,7 @@
 - Keep session cookies secure and HttpOnly.
 - Enforce expiration and logout cleanup.
 - Authorize admin actions by role.
+
+## Network exposure
+- Publish only the reverse proxy; the web preview binds to loopback for local use.
+- Keep API and PostgreSQL ports unpublished on the host. The web and reverse proxy route `/api/` over the private Compose network.
