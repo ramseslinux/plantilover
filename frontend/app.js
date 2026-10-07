@@ -262,7 +262,7 @@ async function checkout() {
     saveCart();
     renderCart();
     setCartOpen(false);
-    showToast(`Cotización ${result.publicOrderNumber} creada por ${money.format(Number(result.total))} MXN.`);
+    window.location.assign(`/consulta/?folio=${encodeURIComponent(result.publicOrderNumber)}`);
   } catch (error) {
     showToast(error.message);
   } finally {

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#012d1d" />
+    <title>Rastrea tu pedido | Planti Lovers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,400,0,0&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../consulta.css" />
+  </head>
+  <body>
+    <header class="track-header">
+      <a class="track-brand" href="/" aria-label="Planti Lovers, catálogo">
+        <span class="material-symbols-outlined" aria-hidden="true">psychiatry</span>
+        <span>planti<span>lovers</span></span>
+      </a>
+      <a class="catalog-link" href="/">Seguir explorando <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
+    </header>
+
+    <main class="tracking-shell">
+      <div class="tracking-intro">
+        <span class="tracking-kicker"><span class="material-symbols-outlined" aria-hidden="true">verified</span> Rastreo de pedidos</span>
+        <h1>Rastrea tu solicitud o pedido</h1>
+        <p>Ingresa el folio para consultar su estado, artículos y seguimiento de envío.</p>
+      </div>
+
+      <form id="lookupForm" class="lookup-form">
+        <label for="orderNumber">Número de folio</label>
+        <div class="lookup-input-row">
+          <div class="lookup-input-wrap">
+            <span class="material-symbols-outlined" aria-hidden="true">tag</span>
+            <input id="orderNumber" name="orderNumber" type="text" placeholder="Ej. PED-20261007-A1B2" autocomplete="off" required />
+          </div>
+          <button id="lookupButton" type="submit"><span class="material-symbols-outlined" aria-hidden="true">search</span><span>Consultar</span></button>
+        </div>
+        <p id="lookupMessage" class="lookup-message" role="status" aria-live="polite"></p>
+      </form>
+
+      <section id="orderResult" class="order-result hidden" aria-live="polite">
+        <div class="result-heading">
+          <div>
+            <span class="result-overline">Folio de solicitud</span>
+            <h2 id="resultFolio"></h2>
+          </div>
+          <span id="resultStatus" class="result-status"></span>
+        </div>
+        <div id="resultNotice" class="result-notice hidden"></div>
+        <dl class="order-meta">
+          <div><dt>Cliente</dt><dd id="resultCustomer"></dd></div>
+          <div><dt>Fecha de solicitud</dt><dd id="resultDate"></dd></div>
+          <div><dt>Tipo de documento</dt><dd id="resultType"></dd></div>
+          <div><dt>Pago</dt><dd id="resultPayment"></dd></div>
+        </dl>
+
+        <section class="tracking-section">
+          <div class="section-heading"><span class="material-symbols-outlined" aria-hidden="true">alt_route</span><h3>Estado del pedido</h3></div>
+          <ol id="orderTimeline" class="order-timeline"></ol>
+        </section>
+
+        <section class="tracking-section">
+          <div class="section-heading"><span class="material-symbols-outlined" aria-hidden="true">psychiatry</span><h3>Artículos</h3></div>
+          <div id="orderItems" class="order-items"></div>
+          <div class="order-total"><span>Total de referencia</span><strong id="resultTotal"></strong></div>
+          <p class="reference-note">El precio y la disponibilidad se confirman con el vivero; el costo de envío puede requerir validación adicional.</p>
+        </section>
+
+        <section id="shippingDetails" class="shipping-details hidden">
+          <div class="section-heading"><span class="material-symbols-outlined" aria-hidden="true">local_shipping</span><h3>Seguimiento de envío</h3></div>
+          <dl class="order-meta shipping-meta">
+            <div><dt>Transportista</dt><dd id="shippingCarrier"></dd></div>
+            <div><dt>Número de guía</dt><dd id="trackingNumber"></dd></div>
+            <div><dt>Notas</dt><dd id="shippingNotes"></dd></div>
+          </dl>
+        </section>
+      </section>
+      <footer class="tracking-footer"><a href="/">Volver al catálogo</a></footer>
+    </main>
+    <script src="../consulta.js"></script>
+  </body>
+</html>

@@ -125,6 +125,12 @@ test('creates quotation with snapshot and PED public number', async () => {
   assert.equal(body.items.length, 2);
   assert.equal(body.items[0].unitPrice, '450.00');
   assert.equal(body.items[0].subtotal, '900.00');
+
+  const lookup = await request(app, 'GET', `/api/orders/${body.publicOrderNumber}`);
+  assert.equal(lookup.status, 200);
+  assert.equal(lookup.body.publicOrderNumber, body.publicOrderNumber);
+  assert.equal(lookup.body.customerName, 'Ana');
+  assert.equal(lookup.body.items.length, 2);
 });
 
 test('admin login works and orders endpoint is protected', async () => {
