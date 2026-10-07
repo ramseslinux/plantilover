@@ -623,18 +623,23 @@ async function loadOrders(pool) {
             os.service_name_snapshot, os.rate_version_snapshot,
             os.rate_original::text AS rate_original, os.rate_final::text AS rate_final,
             os.is_manual_override, os.rate_currency, os.weight_snapshot::text AS weight_snapshot,
-            COALESCE(json_agg(json_build_object(
+            COALESCE(item_rows.items,
+              '[]'::json
+            ) AS items
+       FROM orders o
+       LEFT JOIN LATERAL (
+         SELECT json_agg(json_build_object(
               'productId', oi.product_id,
               'productName', oi.product_name,
               'productSku', oi.product_sku,
               'quantity', oi.quantity,
               'unitPrice', oi.unit_price::text,
               'subtotal', oi.subtotal::text
-            ) ORDER BY oi.created_at) FILTER (WHERE oi.id IS NOT NULL), '[]') AS items
-       FROM orders o
-       LEFT JOIN order_items oi ON oi.order_id = o.id
+            ) ORDER BY oi.created_at) AS items
+           FROM order_items oi
+          WHERE oi.order_id = o.id
+       ) item_rows ON TRUE
        LEFT JOIN order_shipping os ON os.order_id = o.id
-      GROUP BY o.id, os.order_id
       ORDER BY o.created_at`
   );
 
