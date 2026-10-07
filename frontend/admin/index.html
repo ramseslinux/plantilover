@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#012d1d" />
+    <title>Acceso administrativo | Planti Lovers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,400,0,0&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body class="login-page">
+    <main class="login-layout">
+      <section class="login-story" aria-label="Planti Lovers">
+        <a class="admin-brand" href="/" aria-label="Volver al catálogo Planti Lovers">
+          <span class="material-symbols-outlined" aria-hidden="true">psychiatry</span>
+          <span>planti<span>lovers</span></span>
+        </a>
+        <div class="story-copy">
+          <span class="story-kicker">Consola de vivero</span>
+          <h1>Cuidamos cada planta.<br />Seguimos cada pedido.</h1>
+          <p>Acceso reservado para el equipo de Planti Lovers.</p>
+        </div>
+        <div class="story-foot">
+          <span class="material-symbols-outlined" aria-hidden="true">verified_user</span>
+          <span>Acceso protegido y registro de actividad</span>
+        </div>
+      </section>
+
+      <section class="login-form-side" aria-labelledby="loginTitle">
+        <div class="login-form-wrap">
+          <a class="back-link" href="/">
+            <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+            Volver al catálogo
+          </a>
+          <div class="form-heading">
+            <span class="section-label">Portal interno</span>
+            <h2 id="loginTitle">Iniciar sesión</h2>
+            <p>Ingresa con las credenciales asignadas por administración.</p>
+          </div>
+
+          <form id="loginForm" class="login-form" novalidate>
+            <label class="field-label" for="email">Correo electrónico</label>
+            <div class="input-wrap">
+              <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+              <input id="email" name="email" type="email" autocomplete="username" placeholder="nombre@empresa.com" required />
+            </div>
+
+            <div class="password-label-row">
+              <label class="field-label" for="password">Contraseña</label>
+            </div>
+            <div class="input-wrap">
+              <span class="material-symbols-outlined" aria-hidden="true">lock</span>
+              <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Tu contraseña" required />
+              <button id="togglePassword" class="icon-button" type="button" aria-label="Mostrar contraseña" title="Mostrar contraseña">
+                <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+              </button>
+            </div>
+
+            <p id="loginError" class="form-message" role="alert" aria-live="polite"></p>
+            <button id="submitLogin" class="submit-button" type="submit">
+              <span class="button-label">Entrar a operaciones</span>
+              <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+            </button>
+          </form>
+          <p class="security-note"><span class="material-symbols-outlined" aria-hidden="true">shield_lock</span>La sesión se cierra automáticamente después de 8 horas.</p>
+        </div>
+      </section>
+    </main>
+    <script src="login.js"></script>
+  </body>
+</html>

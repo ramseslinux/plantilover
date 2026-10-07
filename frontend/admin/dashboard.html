@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#012d1d" />
+    <title>Operaciones | Planti Lovers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,400,0,0&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body class="dashboard-page">
+    <header class="dashboard-header">
+      <a class="admin-brand" href="/" aria-label="Planti Lovers, catálogo">
+        <span class="material-symbols-outlined" aria-hidden="true">psychiatry</span>
+        <span>planti<span>lovers</span></span>
+      </a>
+      <div class="header-actions">
+        <a class="store-link" href="/" title="Abrir catálogo"><span class="material-symbols-outlined" aria-hidden="true">storefront</span><span>Catálogo</span></a>
+        <span id="adminEmail" class="admin-email"></span>
+        <button id="logoutButton" class="logout-button" type="button" title="Cerrar sesión"><span class="material-symbols-outlined" aria-hidden="true">logout</span><span>Salir</span></button>
+      </div>
+    </header>
+
+    <main class="dashboard-shell">
+      <section class="dashboard-heading">
+        <div>
+          <span class="section-label">Consola administrativa</span>
+          <h1>Pedidos y cotizaciones</h1>
+          <p>Consulta solicitudes, pagos y el avance de cada pedido.</p>
+        </div>
+        <button id="refreshButton" class="refresh-button" type="button"><span class="material-symbols-outlined" aria-hidden="true">refresh</span><span>Actualizar</span></button>
+      </section>
+
+      <section class="metric-grid" aria-label="Resumen de órdenes">
+        <article class="metric-item"><span class="metric-icon"><span class="material-symbols-outlined" aria-hidden="true">request_quote</span></span><strong id="metricPending">0</strong><span>Por atender</span></article>
+        <article class="metric-item"><span class="metric-icon"><span class="material-symbols-outlined" aria-hidden="true">payments</span></span><strong id="metricPayment">0</strong><span>Pago pendiente</span></article>
+        <article class="metric-item"><span class="metric-icon"><span class="material-symbols-outlined" aria-hidden="true">inventory_2</span></span><strong id="metricProcessing">0</strong><span>En preparación</span></article>
+        <article class="metric-item"><span class="metric-icon"><span class="material-symbols-outlined" aria-hidden="true">task_alt</span></span><strong id="metricTotal">0</strong><span>Órdenes totales</span></article>
+      </section>
+
+      <section class="orders-section" aria-labelledby="ordersTitle">
+        <div class="orders-heading">
+          <div>
+            <h2 id="ordersTitle">Todas las órdenes</h2>
+            <p id="ordersCaption">Cargando órdenes...</p>
+          </div>
+          <label class="orders-search" for="orderSearch">
+            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+            <input id="orderSearch" type="search" placeholder="Buscar folio, cliente o producto" autocomplete="off" />
+          </label>
+        </div>
+        <nav class="order-filters" aria-label="Filtrar órdenes">
+          <button class="order-filter active" type="button" data-filter="all" aria-pressed="true">Todas <span id="countAll">0</span></button>
+          <button class="order-filter" type="button" data-filter="pending" aria-pressed="false">Pendientes <span id="countPending">0</span></button>
+          <button class="order-filter" type="button" data-filter="processing" aria-pressed="false">En proceso <span id="countProcessing">0</span></button>
+          <button class="order-filter" type="button" data-filter="shipping" aria-pressed="false">En envío <span id="countShipping">0</span></button>
+          <button class="order-filter" type="button" data-filter="archived" aria-pressed="false">Archivadas <span id="countArchived">0</span></button>
+        </nav>
+        <div class="table-wrap">
+          <table class="orders-table">
+            <thead><tr><th>Folio</th><th>Cliente</th><th>Artículos</th><th>Total</th><th>Estado</th><th>Creada</th><th><span class="visually-hidden">Acciones</span></th></tr></thead>
+            <tbody id="ordersBody"></tbody>
+          </table>
+          <div id="ordersEmpty" class="orders-empty hidden"><span class="material-symbols-outlined" aria-hidden="true">search_off</span><p>No hay órdenes que coincidan con este filtro.</p></div>
+        </div>
+        <p id="dashboardMessage" class="dashboard-message" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <div id="detailBackdrop" class="drawer-backdrop hidden"></div>
+    <aside id="orderDrawer" class="order-drawer hidden" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <div class="drawer-heading">
+        <div><span class="section-label">Detalle de pedido</span><h2 id="drawerTitle">Orden</h2></div>
+        <button id="closeDrawer" class="icon-button" type="button" aria-label="Cerrar detalle"><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
+      </div>
+      <div id="drawerContent" class="drawer-content"></div>
+      <form id="orderUpdateForm" class="drawer-form">
+        <label for="orderStatus">Estado del pedido</label>
+        <select id="orderStatus">
+          <option value="pending">Pendiente</option>
+          <option value="paid">Pagado</option>
+          <option value="processing">En preparación</option>
+          <option value="shipping">En envío</option>
+          <option value="delivered">Entregado</option>
+          <option value="cancelled">Cancelado</option>
+          <option value="archived">Archivado</option>
+        </select>
+        <label for="paymentStatus">Estado del pago</label>
+        <select id="paymentStatus">
+          <option value="pending">Pendiente</option>
+          <option value="pending_review">En revisión</option>
+          <option value="approved">Aprobado</option>
+          <option value="rejected">Rechazado</option>
+          <option value="refunded">Reembolsado</option>
+        </select>
+        <p id="drawerMessage" class="form-message" role="status" aria-live="polite"></p>
+        <button id="saveOrderButton" class="submit-button" type="submit"><span class="button-label">Guardar cambios</span><span class="material-symbols-outlined" aria-hidden="true">save</span></button>
+      </form>
+    </aside>
+    <script src="dashboard.js"></script>
+  </body>
+</html>
