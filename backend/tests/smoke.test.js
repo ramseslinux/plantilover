@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createApp } from '../src/server.js';
+process.env.ADMIN_EMAIL = 'admin@example.com';
+process.env.ADMIN_PASSWORD = 'change_me_admin_password';
+
+const { createApp } = await import('../src/server.js');
 
 async function request(app, method, path, options = {}) {
   const server = app.listen(0);
