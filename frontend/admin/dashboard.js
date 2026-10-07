@@ -22,6 +22,13 @@ const paymentLabels = {
   rejected: 'Rechazado',
   refunded: 'Reembolsado',
 };
+const shippingLabels = {
+  not_requested: 'Sin solicitar',
+  pending: 'Pendiente de envío',
+  shipped: 'Enviado',
+  delivered: 'Entregado',
+};
+const documentLabels = { PED: 'Cotización', ORD: 'Orden' };
 const state = { orders: [], filter: 'all', query: '', selectedOrder: null };
 
 const ordersBody = document.getElementById('ordersBody');
@@ -84,11 +91,11 @@ function renderOrders() {
     const itemSummary = firstItem
       ? `${itemCount} unid. · ${escapeHTML(firstItem.productName)}${items.length > 1 ? ` + ${items.length - 1}` : ''}`
       : 'Sin artículos';
-    const orderStatus = statusLabels[order.status] || order.status;
-    const paymentStatus = paymentLabels[order.paymentStatus] || order.paymentStatus;
+    const orderStatus = statusLabels[order.status] || 'Por confirmar';
+    const paymentStatus = paymentLabels[order.paymentStatus] || 'Por confirmar';
 
     return `<tr>
-      <td><span class="table-order-number">${escapeHTML(order.publicOrderNumber)}</span><span class="table-order-type">${escapeHTML(order.documentType)}</span></td>
+      <td><span class="table-order-number">${escapeHTML(order.publicOrderNumber)}</span><span class="table-order-type">${escapeHTML(documentLabels[order.documentType] || 'Documento')}</span></td>
       <td>${escapeHTML(order.customerName || 'Cliente')}</td>
       <td class="table-items">${itemSummary}</td>
       <td class="table-total">${currency.format(Number(order.total))}</td>
@@ -128,9 +135,9 @@ function renderOrderDetails(order) {
     <dl class="order-facts">
       <div><dt>Cliente</dt><dd>${escapeHTML(order.customerName || 'Cliente')}</dd></div>
       <div><dt>Creada</dt><dd>${escapeHTML(displayDate(order.createdAt))}</dd></div>
-      <div><dt>Tipo de documento</dt><dd>${escapeHTML(order.documentType)}</dd></div>
+      <div><dt>Tipo de documento</dt><dd>${escapeHTML(documentLabels[order.documentType] || 'Documento')}</dd></div>
       <div><dt>Total</dt><dd>${currency.format(Number(order.total))}</dd></div>
-      <div><dt>Envío</dt><dd>${escapeHTML(statusLabels[order.shippingStatus] || order.shippingStatus || 'Sin solicitar')}</dd></div>
+      <div><dt>Envío</dt><dd>${escapeHTML(shippingLabels[order.shippingStatus] || 'Por confirmar')}</dd></div>
       ${order.trackingNumber ? `<div><dt>Guía</dt><dd>${escapeHTML(order.trackingNumber)}</dd></div>` : ''}
     </dl>
     <h3 class="drawer-section-title">Artículos</h3>

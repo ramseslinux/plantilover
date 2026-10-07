@@ -20,7 +20,23 @@
 body { margin: 0; background: var(--canvas); color: var(--ink); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; }
 button, input, select { font: inherit; }
 button { cursor: pointer; }
-.material-symbols-outlined { font-size: 21px; line-height: 1; }
+.material-symbols-outlined {
+  display: inline-block;
+  font-family: 'Material Symbols Outlined';
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
 .login-layout { min-height: 100vh; display: grid; grid-template-columns: minmax(330px, .85fr) 1.15fr; }
 .login-story { min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: 36px clamp(24px, 5vw, 72px); background: linear-gradient(180deg, rgba(1,45,29,.74), rgba(1,45,29,.94)), url('https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1500&q=85') center/cover; color: #fff; }
 .admin-brand { display: inline-flex; align-items: center; gap: 10px; width: fit-content; color: white; text-decoration: none; font: 700 21px 'Epilogue', sans-serif; }
@@ -161,11 +177,11 @@ button { cursor: pointer; }
 @keyframes drawer-enter { from { opacity: .7; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
 
 @media (max-width: 760px) {
-  .dashboard-header { min-height: 60px; padding: 0 14px; }
+  .dashboard-header { min-height: 92px; flex-wrap: wrap; row-gap: 5px; padding: 8px 14px; }
   .dashboard-header .admin-brand { font-size: 16px; }
-  .header-actions { gap: 10px; }
-  .admin-email { max-width: 120px; }
-  .store-link span:last-child, .logout-button span:last-child { display: none; }
+  .header-actions { width: 100%; justify-content: space-between; gap: 6px; }
+  .admin-email { max-width: min(34vw, 180px); }
+  .store-link, .logout-button { min-height: 36px; gap: 5px; padding: 0 8px; font-size: 11px; white-space: nowrap; }
   .dashboard-shell { width: calc(100% - 28px); padding-top: 24px; }
   .dashboard-heading { align-items: flex-start; }
   .dashboard-heading h1 { font-size: 24px; }

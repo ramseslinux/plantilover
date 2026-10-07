@@ -19,7 +19,23 @@
 body { margin: 0; min-height: 100vh; background: var(--canvas); color: var(--ink); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; }
 button, input { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
-.material-symbols-outlined { font-size: 21px; line-height: 1; }
+.material-symbols-outlined {
+  display: inline-block;
+  font-family: 'Material Symbols Outlined';
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
 .track-header { height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 max(20px, calc((100% - 1040px) / 2)); border-bottom: 1px solid rgba(1,45,29,.08); background: rgba(255,255,255,.9); }
 .track-brand { display: inline-flex; align-items: center; gap: 8px; color: var(--evergreen); font: 700 19px 'Epilogue', sans-serif; text-decoration: none; }
 .track-brand .material-symbols-outlined { color: var(--green); font-size: 25px; }
@@ -99,8 +115,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .tracking-intro h1 { font-size: 23px; }
   .tracking-intro p { font-size: 12px; }
   .lookup-form { padding: 12px; }
-  .lookup-input-row button { width: 46px; flex: 0 0 auto; padding: 0; }
-  .lookup-input-row button span:last-child { display: none; }
+  .lookup-input-row button { min-width: 96px; flex: 0 0 auto; gap: 5px; padding: 0 10px; font-size: 11px; }
   .result-heading { align-items: flex-start; flex-direction: column; }
   .order-meta { gap: 12px 8px; padding: 13px; }
   .tracking-section { padding: 13px; }

@@ -22,6 +22,13 @@ const paymentLabels = {
   rejected: 'Rechazado',
   refunded: 'Reembolsado',
 };
+const shippingLabels = {
+  not_requested: 'Sin solicitar',
+  pending: 'Pendiente de envío',
+  shipped: 'Enviado',
+  delivered: 'Entregado',
+};
+const documentLabels = { PED: 'Cotización', ORD: 'Orden' };
 
 const lookupForm = document.getElementById('lookupForm');
 const orderInput = document.getElementById('orderNumber');
@@ -78,15 +85,15 @@ function renderOrder(order) {
   document.getElementById('resultFolio').textContent = order.publicOrderNumber;
   document.getElementById('resultCustomer').textContent = order.customerName || 'Cliente';
   document.getElementById('resultDate').textContent = formatDate(order.createdAt);
-  document.getElementById('resultType').textContent = order.documentType;
-  document.getElementById('resultPayment').textContent = paymentLabels[order.paymentStatus] || order.paymentStatus;
+  document.getElementById('resultType').textContent = documentLabels[order.documentType] || 'Documento';
+  document.getElementById('resultPayment').textContent = paymentLabels[order.paymentStatus] || 'Por confirmar';
   document.getElementById('resultTotal').textContent = `${money.format(Number(order.total))} MXN`;
 
   const status = order.status === 'pending' && order.paymentStatus === 'pending_review'
     ? 'Comprobante en revisión'
     : order.status === 'pending' && order.paymentStatus === 'rejected'
       ? 'Pago rechazado'
-      : orderLabels[order.status] || order.status;
+      : orderLabels[order.status] || 'Estado por confirmar';
   const statusEl = document.getElementById('resultStatus');
   statusEl.textContent = status;
   statusEl.className = `result-status status-${escapeHTML(order.status)}${order.paymentStatus === 'rejected' ? ' status-error' : ''}`;
