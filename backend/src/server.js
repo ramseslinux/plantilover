@@ -5,9 +5,16 @@ import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
 import { createServer } from 'node:http';
 import { pathToFileURL } from 'node:url';
+import { readFile } from 'node:fs/promises';
+import pg from 'pg';
 import argon2 from 'argon2';
 import { randomBytes } from 'node:crypto';
 import { config } from './config.js';
+
+const { Pool } = pg;
+const databasePool = config.databaseUrl
+  ? new Pool({ connectionString: config.databaseUrl })
+  : null;
 
 const productCatalog = [
   {
@@ -249,9 +256,88 @@ function findOrderByIdOrCode(orderIdOrPublicNumber) {
   });
 }
 
-function getProductById(productId) {
-  return productCatalog.find((product) => product.id === productId);
+function mapDemoPlant(row) {
+  return {
+    id: String(row.id),
+    slug: row.slug,
+    name: row.name,
+    sku: row.sku,
+    category: row.category,
+    price: toMoney(row.price),
+    image: row.image_url,
+    description: row.description || '',
+    care: row.care_level
+      ? `${row.care_level[0].toUpperCase()}${row.care_level.slice(1)}`
+      : 'Media',
+    size: row.plant_size || '',
+    light: row.light_requirement || '',
+    petFriendly: Boolean(row.pet_friendly),
+    stock: Number(row.stock || 0),
+  };
 }
+
+async function loadDemoPlants(pool) {
+  const { rows } = await pool.query(
+    `SELECT id, slug, name, sku, category, price, image_url, description,
+            care_level, plant_size, light_requirement, pet_friendly, stock
+       FROM demo_plants
+      ORDER BY id`
+  );
+  return rows.map(mapDemoPlant);
+}
+
+async function persistDemoOrder(pool, order) {
+  if (!pool) return;
+
+  await pool.query(
+    `INSERT INTO demo_quotation_orders (
+       id, public_order_number_base, document_type, customer_name,
+       order_data, created_at, updated_at
+     ) VALUES ($1, $2, $3, $4, $5::jsonb, $6, $7)
+     ON CONFLICT (id) DO UPDATE SET
+       public_order_number_base = EXCLUDED.public_order_number_base,
+       document_type = EXCLUDED.document_type,
+       customer_name = EXCLUDED.customer_name,
+       order_data = EXCLUDED.order_data,
+       updated_at = EXCLUDED.updated_at`,
+    [
+      order.id,
+      order.publicOrderNumberBase,
+      order.documentType,
+      order.customerName,
+      JSON.stringify(order),
+      order.createdAt,
+      order.updatedAt,
+    ]
+  );
+}
+
+async function initializeDatabase(pool) {
+  const seedSql = await readFile(
+    new URL('../../database/demo_plants_seed.sql', import.meta.url),
+    'utf8'
+  );
+  const orderMigration = await readFile(
+    new URL('../../database/migrations/003_demo_quotation_orders.sql', import.meta.url),
+    'utf8'
+  );
+
+  await pool.query(seedSql);
+  await pool.query(orderMigration);
+
+  const { rows } = await pool.query(
+    'SELECT order_data FROM demo_quotation_orders ORDER BY created_at'
+  );
+  for (const row of rows) {
+    if (!orders.some((order) => order.id === row.order_data.id)) {
+      orders.push(row.order_data);
+    }
+  }
+}
+
+const asyncHandler = (handler) => (req, res, next) => {
+  Promise.resolve(handler(req, res, next)).catch(next);
+};
 
 function validateUpload(fileName, mimeType, content) {
   const extension = String(fileName || '')
@@ -303,7 +389,7 @@ function requireAdmin(req, res, next) {
   return next();
 }
 
-export function createApp() {
+export function createApp({ pool = null } = {}) {
   const app = express();
 
   const apiLimiter = rateLimit({
@@ -338,37 +424,43 @@ export function createApp() {
     res.json({ ok: true, service: 'planti-lovers-api', env: config.nodeEnv });
   });
 
-  app.get('/api/products', (_req, res) => {
-    res.json({ items: productCatalog });
-  });
+  app.get('/api/products', asyncHandler(async (_req, res) => {
+    const items = pool ? await loadDemoPlants(pool) : productCatalog;
+    res.json({ items });
+  }));
 
-  app.get('/api/products/:slug', (req, res) => {
-    const product = productCatalog.find(
+  app.get('/api/products/:slug', asyncHandler(async (req, res) => {
+    const catalog = pool ? await loadDemoPlants(pool) : productCatalog;
+    const product = catalog.find(
       (item) => item.slug === req.params.slug
     );
     if (!product) {
       return res.status(404).json({ error: 'Product not found.' });
     }
     return res.json({ item: product });
-  });
+  }));
 
-  app.get('/api/categories', (_req, res) => {
+  app.get('/api/categories', asyncHandler(async (_req, res) => {
+    const catalog = pool ? await loadDemoPlants(pool) : productCatalog;
     const categories = [
-      ...new Set(productCatalog.map((product) => product.category)),
+      ...new Set(catalog.map((product) => product.category)),
     ];
     res.json({ items: categories });
-  });
+  }));
 
-  app.post('/api/orders', (req, res) => {
+  app.post('/api/orders', asyncHandler(async (req, res) => {
     const { items, customerName } = req.body || {};
 
     if (!Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: 'Cart items are required.' });
     }
 
+    const catalog = pool ? await loadDemoPlants(pool) : productCatalog;
     const snapshotItems = items.map((item) => {
       const quantity = Number(item.quantity || 0);
-      const product = getProductById(item.productId);
+      const product = catalog.find(
+        (entry) => String(entry.id) === String(item.productId)
+      );
 
       if (!product) {
         throw new Error(`Product ${item.productId} was not found.`);
@@ -416,6 +508,7 @@ export function createApp() {
       updatedAt: new Date().toISOString(),
     };
 
+    await persistDemoOrder(pool, order);
     orders.push(order);
     appendAuditLog({
       entityType: 'orders',
@@ -440,7 +533,7 @@ export function createApp() {
       order: serialiseOrder(order),
       items: order.items,
     });
-  });
+  }));
 
   app.get('/api/orders/:publicOrderNumber', (req, res) => {
     const order = findOrderByIdOrCode(req.params.publicOrderNumber);
@@ -581,7 +674,7 @@ export function createApp() {
     return res.json({ order: serialiseOrder(order) });
   });
 
-  app.patch('/api/admin/orders/:id', requireAdmin, (req, res) => {
+  app.patch('/api/admin/orders/:id', requireAdmin, asyncHandler(async (req, res) => {
     const order = findOrderByIdOrCode(req.params.id);
     if (!order) {
       return res.status(404).json({ error: 'Order not found.' });
@@ -610,6 +703,8 @@ export function createApp() {
       order.documentType = 'ORD';
     }
 
+    await persistDemoOrder(pool, order);
+
     appendAuditLog({
       entityType: 'orders',
       entityId: order.id,
@@ -624,9 +719,9 @@ export function createApp() {
       message: 'Order updated successfully.',
       ...serialiseOrder(order),
     });
-  });
+  }));
 
-  app.patch('/api/admin/orders/:id/shipping', requireAdmin, (req, res) => {
+  app.patch('/api/admin/orders/:id/shipping', requireAdmin, asyncHandler(async (req, res) => {
     const order = findOrderByIdOrCode(req.params.id);
     if (!order) {
       return res.status(404).json({ error: 'Order not found.' });
@@ -663,6 +758,8 @@ export function createApp() {
     order.shippingNotes = shippingNotes ?? order.shippingNotes;
     order.updatedAt = new Date().toISOString();
 
+    await persistDemoOrder(pool, order);
+
     appendAuditLog({
       entityType: 'orders',
       entityId: order.id,
@@ -681,9 +778,9 @@ export function createApp() {
       message: 'Shipping updated successfully.',
       ...serialiseOrder(order),
     });
-  });
+  }));
 
-  app.patch('/api/admin/orders/:id/archive', requireAdmin, (req, res) => {
+  app.patch('/api/admin/orders/:id/archive', requireAdmin, asyncHandler(async (req, res) => {
     const order = findOrderByIdOrCode(req.params.id);
     if (!order) {
       return res.status(404).json({ error: 'Order not found.' });
@@ -694,6 +791,8 @@ export function createApp() {
     order.updatedAt = new Date().toISOString();
     order.archived = true;
     order.archivedReason = req.body?.archivedReason || 'inactive';
+
+    await persistDemoOrder(pool, order);
 
     appendAuditLog({
       entityType: 'orders',
@@ -710,9 +809,9 @@ export function createApp() {
       archived: true,
       ...serialiseOrder(order),
     });
-  });
+  }));
 
-  app.patch('/api/admin/orders/:id/restore', requireAdmin, (req, res) => {
+  app.patch('/api/admin/orders/:id/restore', requireAdmin, asyncHandler(async (req, res) => {
     const order = findOrderByIdOrCode(req.params.id);
     if (!order) {
       return res.status(404).json({ error: 'Order not found.' });
@@ -723,6 +822,8 @@ export function createApp() {
     order.updatedAt = new Date().toISOString();
     order.archived = false;
     delete order.archivedReason;
+
+    await persistDemoOrder(pool, order);
 
     appendAuditLog({
       entityType: 'orders',
@@ -739,7 +840,7 @@ export function createApp() {
       restored: true,
       ...serialiseOrder(order),
     });
-  });
+  }));
 
   app.post('/api/admin/orders/:id/evidence', requireAdmin, (req, res) => {
     const order = findOrderByIdOrCode(req.params.id);
@@ -864,7 +965,7 @@ export function createApp() {
     res.json({ orders: list.map(serialiseOrder) });
   });
 
-  app.post('/api/admin/products', requireAdmin, (req, res) => {
+  app.post('/api/admin/products', requireAdmin, asyncHandler(async (req, res) => {
     const { name, slug, sku, category, price } = req.body || {};
 
     if (!name || !slug || !sku || !category || !price) {
@@ -873,19 +974,38 @@ export function createApp() {
         .json({ error: 'name, slug, sku, category and price are required.' });
     }
 
-    const product = {
-      id: `product-${randomToken(10)}`,
-      name,
-      slug,
-      sku,
-      category,
-      price: toMoney(price),
-      image:
-        'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=900&q=80',
-      createdAt: new Date().toISOString(),
-    };
-
-    productCatalog.push(product);
+    let product;
+    if (pool) {
+      const { rows } = await pool.query(
+        `INSERT INTO demo_plants (
+           slug, name, sku, category, price, stock, care_level,
+           image_url, description, pet_friendly
+         ) VALUES ($1, $2, $3, $4, $5, 0, 'media', $6, '', FALSE)
+         RETURNING *`,
+        [
+          slug,
+          name,
+          sku,
+          category,
+          toMoney(price),
+          'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=900&q=80',
+        ]
+      );
+      product = mapDemoPlant(rows[0]);
+    } else {
+      product = {
+        id: `product-${randomToken(10)}`,
+        name,
+        slug,
+        sku,
+        category,
+        price: toMoney(price),
+        image:
+          'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=900&q=80',
+        createdAt: new Date().toISOString(),
+      };
+      productCatalog.push(product);
+    }
     appendAuditLog({
       entityType: 'products',
       entityId: product.id,
@@ -897,17 +1017,57 @@ export function createApp() {
     });
 
     return res.status(201).json({ message: 'Product created.', product });
-  });
+  }));
 
-  app.patch('/api/admin/products/:id', requireAdmin, (req, res) => {
-    const product = productCatalog.find((entry) => entry.id === req.params.id);
+  app.patch('/api/admin/products/:id', requireAdmin, asyncHandler(async (req, res) => {
+    let product;
+    if (pool) {
+      const updates = req.body || {};
+      const { rows } = await pool.query(
+        `UPDATE demo_plants SET
+           name = COALESCE($2, name),
+           slug = COALESCE($3, slug),
+           sku = COALESCE($4, sku),
+           category = COALESCE($5, category),
+           price = COALESCE($6, price),
+           description = COALESCE($7, description),
+           image_url = COALESCE($8, image_url),
+           stock = COALESCE($9, stock),
+           care_level = COALESCE($10, care_level),
+           plant_size = COALESCE($11, plant_size),
+           light_requirement = COALESCE($12, light_requirement),
+           pet_friendly = COALESCE($13, pet_friendly)
+         WHERE id::text = $1
+         RETURNING *`,
+        [
+          req.params.id,
+          updates.name ?? null,
+          updates.slug ?? null,
+          updates.sku ?? null,
+          updates.category ?? null,
+          updates.price === undefined ? null : toMoney(updates.price),
+          updates.description ?? null,
+          updates.image ?? null,
+          updates.stock ?? null,
+          updates.care?.toLowerCase() ?? null,
+          updates.size ?? null,
+          updates.light ?? null,
+          updates.petFriendly ?? null,
+        ]
+      );
+      product = rows[0] ? mapDemoPlant(rows[0]) : null;
+    } else {
+      product = productCatalog.find((entry) => entry.id === req.params.id);
+    }
     if (!product) {
       return res.status(404).json({ error: 'Product not found.' });
     }
 
-    Object.assign(product, req.body || {});
-    if (product.price) {
-      product.price = toMoney(product.price);
+    if (!pool) {
+      Object.assign(product, req.body || {});
+      if (product.price) {
+        product.price = toMoney(product.price);
+      }
     }
 
     appendAuditLog({
@@ -921,17 +1081,25 @@ export function createApp() {
     });
 
     return res.json({ message: 'Product updated.', product });
-  });
+  }));
 
-  app.delete('/api/admin/products/:id', requireAdmin, (req, res) => {
-    const index = productCatalog.findIndex(
-      (entry) => entry.id === req.params.id
-    );
-    if (index === -1) {
+  app.delete('/api/admin/products/:id', requireAdmin, asyncHandler(async (req, res) => {
+    let removedProduct;
+    if (pool) {
+      const { rows } = await pool.query(
+        'DELETE FROM demo_plants WHERE id::text = $1 RETURNING *',
+        [req.params.id]
+      );
+      removedProduct = rows[0] ? mapDemoPlant(rows[0]) : null;
+    } else {
+      const index = productCatalog.findIndex(
+        (entry) => entry.id === req.params.id
+      );
+      removedProduct = index === -1 ? null : productCatalog.splice(index, 1)[0];
+    }
+    if (!removedProduct) {
       return res.status(404).json({ error: 'Product not found.' });
     }
-
-    const [removedProduct] = productCatalog.splice(index, 1);
     appendAuditLog({
       entityType: 'products',
       entityId: removedProduct.id,
@@ -943,7 +1111,7 @@ export function createApp() {
     });
 
     return res.json({ message: 'Product deleted.', product: removedProduct });
-  });
+  }));
 
   app.use((req, res) => {
     res.status(404).json({ error: `Route not found: ${req.originalUrl}` });
@@ -961,8 +1129,12 @@ export function createApp() {
   return app;
 }
 
-export function startServer(port = config.port) {
-  const app = createApp();
+export async function startServer(port = config.port) {
+  if (databasePool) {
+    await initializeDatabase(databasePool);
+  }
+
+  const app = createApp({ pool: databasePool });
   const server = createServer(app);
 
   server.listen(port, '0.0.0.0', () => {
@@ -976,5 +1148,8 @@ if (
   process.argv[1] &&
   import.meta.url === pathToFileURL(process.argv[1]).href
 ) {
-  startServer();
+  startServer().catch((error) => {
+    console.error('API startup failed:', error);
+    process.exitCode = 1;
+  });
 }

@@ -15,4 +15,5 @@ export const config = {
   sessionSecret: process.env.SESSION_SECRET || 'change_me_session_secret',
   appBaseUrl: process.env.APP_BASE_URL || 'http://localhost',
   whatsappNumber: process.env.WHATSAPP_NUMBER || '5491112345678',
+  databaseUrl: process.env.DATABASE_URL || null,
 };

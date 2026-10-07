@@ -5,7 +5,7 @@ A small, secure, mobile-first quotation platform for plant sales. This V1 focuse
 ## Stack
 - Node.js
 - Express
-- PostgreSQL-ready schema design
+- PostgreSQL-backed demo catalog and quotation snapshots
 - Docker + Docker Compose
 - Mobile-first frontend
 - Nginx reverse proxy
@@ -57,7 +57,9 @@ Change these at runtime using environment variables before deployment in a real 
 
 ## Core flows implemented
 - public catalog browsing
+- demo catalog seeded in PostgreSQL (`demo_plants`)
 - mobile cart and quote creation
+- quotation snapshots persisted in PostgreSQL (`demo_quotation_orders`)
 - public order lookup by public order number
 - payment proof validation and rejection of unsafe uploads
 - admin login and protected routes
@@ -102,4 +104,5 @@ bash scripts/restore-postgres.sh backups/backup_YYYYMMDD_HHMMSS.sql.gz
 
 ## Notes
 - Docker is expected to be installed in the target environment before Compose startup.
+- Admin sessions, audit entries, payment-proof/evidence metadata, and shipping-rate imports remain in memory in this demo version.
 - This V1 is intentionally small and secure, with no overengineering.

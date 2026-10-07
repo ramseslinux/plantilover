@@ -59,6 +59,54 @@ test('demo catalog includes multiple plants with real pricing', async () => {
   assert.equal(body.items.find((product) => product.id === '5').price, '680.00');
 });
 
+test('database mode reads demo plants and persists quotation snapshots', async () => {
+  const persistedOrders = [];
+  const pool = {
+    async query(sql, values = []) {
+      if (sql.includes('FROM demo_plants')) {
+        return {
+          rows: [
+            {
+              id: 1,
+              slug: 'monstera-deliciosa',
+              name: 'Monstera Deliciosa',
+              sku: 'PL-MON-01',
+              category: 'Interior',
+              price: '450.00',
+              image_url: 'https://example.com/monstera.jpg',
+              description: 'Demo plant',
+              care_level: 'media',
+              plant_size: '65 cm',
+              light_requirement: 'Luz indirecta',
+              pet_friendly: false,
+              stock: 18,
+            },
+          ],
+        };
+      }
+      if (sql.includes('INSERT INTO demo_quotation_orders')) {
+        persistedOrders.push(JSON.parse(values[4]));
+        return { rows: [] };
+      }
+      throw new Error(`Unexpected query: ${sql}`);
+    },
+  };
+  const app = createApp({ pool });
+
+  const catalog = await request(app, 'GET', '/api/products');
+  assert.equal(catalog.status, 200);
+  assert.equal(catalog.body.items[0].price, '450.00');
+
+  const created = await request(app, 'POST', '/api/orders', {
+    body: { customerName: 'Database customer', items: [{ productId: '1', quantity: 2 }] },
+  });
+
+  assert.equal(created.status, 201);
+  assert.equal(created.body.total, '900.00');
+  assert.equal(persistedOrders.length, 1);
+  assert.equal(persistedOrders[0].items[0].productSku, 'PL-MON-01');
+});
+
 test('creates quotation with snapshot and PED public number', async () => {
   const app = createApp();
   const { status, body } = await request(app, 'POST', '/api/orders', {

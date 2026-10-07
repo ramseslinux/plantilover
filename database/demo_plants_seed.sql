@@ -30,15 +30,4 @@ VALUES
   ('zamioculcas-zamiifolia', 'Zamioculcas', 'PL-007', 'Bajo mantenimiento', 230.00, 16, 'baja', '50 cm', 'Poca luz', FALSE, 'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?auto=format&fit=crop&w=900&q=80', 'Larga vida útil y aspecto muy limpio, ideal para departamentos y oficinas.'),
   ('heliconia-rostrata', 'Heliconia Rostrata', 'PL-008', 'Exterior', 390.00, 11, 'alta', '80 cm', 'Sol directo', FALSE, 'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=900&q=80', 'Gran presencia exterior con flores llamativas y follaje tropical.'),
   ('dracaena-marginata', 'Dracaena Marginata', 'PL-009', 'Interior', 260.00, 20, 'media', '75 cm', 'Luz brillante', FALSE, 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=900&q=80', 'Perfil elegante y vertical para espacios minimalistas y modernos.')
-ON CONFLICT (slug) DO UPDATE SET
-  name = EXCLUDED.name,
-  sku = EXCLUDED.sku,
-  category = EXCLUDED.category,
-  price = EXCLUDED.price,
-  stock = EXCLUDED.stock,
-  care_level = EXCLUDED.care_level,
-  plant_size = EXCLUDED.plant_size,
-  light_requirement = EXCLUDED.light_requirement,
-  pet_friendly = EXCLUDED.pet_friendly,
-  image_url = EXCLUDED.image_url,
-  description = EXCLUDED.description;
+ON CONFLICT (slug) DO NOTHING;
